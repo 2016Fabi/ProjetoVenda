@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 9. Using constraint metadata</title><link rel="stylesheet" type="text/css" href="css/hibernate.css"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><link rel="home" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="up" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="prev" href="ch08.html" title="Chapter 8. Bootstrapping"/><link rel="next" href="ch10.html" title="Chapter 10. Integrating with other frameworks"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head><body><p id="title"><a href="http://www.hibernate.org" class="site_href"><strong>Hibernate.org</strong></a><a href="http://hibernate.org/Documentation/DocumentationOverview" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch08.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch10.html"><strong>Next</strong></a></li></ul><div class="chapter" title="Chapter 9. Using constraint metadata"><div class="titlepage"><div><div><h2 class="title"><a id="validator-metadata-api"/>Chapter 9. Using constraint metadata</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch09.html#__literal_beandescriptor_literal">9.1. <code class="literal">BeanDescriptor</code></a></span></dt><dt><span class="section"><a href="ch09.html#section-property-descriptor">9.2. <code class="literal">PropertyDescriptor</code></a></span></dt><dt><span class="section"><a href="ch09.html#__literal_methoddescriptor_literal_and_literal_constructordescriptor_literal">9.3. <code class="literal">MethodDescriptor</code> and <code class="literal">ConstructorDescriptor</code></a></span></dt><dt><span class="section"><a href="ch09.html#validator-metadata-api-elementdescriptor">9.4. <code class="literal">ElementDescriptor</code></a></span></dt><dt><span class="section"><a href="ch09.html#section-group-conversion-descriptor">9.5. <code class="literal">GroupConversionDescriptor</code></a></span></dt><dt><span class="section"><a href="ch09.html#section-constraint-descriptor">9.6. <code class="literal">ConstraintDescriptor</code></a></span></dt></dl></div><p>The Bean Validation specification provides not only a validation engine, but also an API for
+retrieving constraint metadata in a uniform way, no matter whether the constraints are declared
+using annotations or via XML mappings. Read this chapter to learn more about this API and its
+possibilities. You can find all the metadata API types in the package <code class="literal">javax.validation.metadata</code>.</p><p>The examples presented in this chapter are based on the classes and constraint declarations shown in
+<a class="xref" href="ch09.html#metadata-example-car" title="Example 9.1. Example classes">Example 9.1, “Example classes”</a>.</p><div class="example"><a id="metadata-example-car"/><p class="title"><strong>Example 9.1. Example classes</strong></p><div class="example-contents"><pre><code class="language-java">package org.hibernate.validator.referenceguide.chapter07;
+
+public class Person {
+
+	public interface Basic {
+	}
+
+	@NotNull
+	private String name;
+
+	//getters and setters ...
+}</code></pre><pre><code class="language-java">public interface Vehicle {
+
+	public interface Basic {
+	}
+
+	@NotNull(groups = Vehicle.Basic.class)
+	String getManufacturer();
+}</code></pre><pre><code class="language-java">@ValidCar
+public class Car implements Vehicle {
+
+	public interface SeverityInfo extends Payload {
+	}
+
+	private String manufacturer;
+
+	@NotNull
+	@Size(min = 2, max = 14)
+	private String licensePlate;
+
+	private Person driver;
+
+	private String modelName;
+
+	public Car() {
+	}
+
+	public Car(
+			@NotNull String manufacturer,
+			String licencePlate,
+			Person driver,
+			String modelName) {
+
+		this.manufacturer = manufacturer;
+		this.licensePlate = licencePlate;
+		this.driver = driver;
+		this.modelName = modelName;
+	}
+
+	public void driveAway(@Max(75) int speed) {
+		//...
+	}
+
+	@LuggageCountMatchesPassengerCount(
+			piecesOfLuggagePerPassenger = 2,
+			validationAppliesTo = ConstraintTarget.PARAMETERS,
+			payload = SeverityInfo.class,
+			message = "There must not be more than {piecesOfLuggagePerPassenger} pieces of " +
+					"luggage per passenger."
+	)
+	public void load(List&lt;Person&gt; passengers, List&lt;PieceOfLuggage&gt; luggage) {
+		//...
+	}
+
+	@Override
+	@Size(min = 3)
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	@Valid
+	@ConvertGroup(from = Default.class, to = Person.Basic.class)
+	public Person getDriver() {
+		return driver;
+	}
+
+	//further getters and setters...
+}</code></pre></div></div><br class="example-break"/><div class="section" title="9.1. BeanDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="__literal_beandescriptor_literal"/>9.1. <code class="literal">BeanDescriptor</code></h2></div></div></div><p>The entry point into the metadata API is the method <code class="literal">Validator#getConstraintsForClass()</code>, which
+returns an instance of the <code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index. html?javax/validation/metadata/BeanDescriptor.html">BeanDescriptor</a></code> interface. Using this
+descriptor, you can obtain metadata for constraints declared directly on the bean itself (class- or
+property-level), but also retrieve metadata descriptors representing single properties, methods and
+constructors.</p><p><a class="xref" href="ch09.html#metadata-example-using-beandescriptor" title="Example 9.2. Using BeanDescriptor">Example 9.2, “Using <code class="literal">BeanDescriptor</code>”</a> demonstrates how to retrieve a <code class="literal">BeanDescriptor</code> for the
+<code class="literal">Car</code> class and how to use this descriptor in form of assertions.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>If a constraint declaration hosted by the requested class is invalid, a <code class="literal">ValidationException</code> is thrown.</p></div><div class="example"><a id="metadata-example-using-beandescriptor"/><p class="title"><strong>Example 9.2. Using <code class="literal">BeanDescriptor</code></strong></p><div class="example-contents"><pre><code class="language-java">Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+BeanDescriptor carDescriptor = validator.getConstraintsForClass( Car.class );
+
+assertTrue( carDescriptor.isBeanConstrained() );
+
+//one class-level constraint
+assertEquals( 1, carDescriptor.getConstraintDescriptors().size() );
+
+//manufacturer, licensePlate, driver
+assertEquals( 3, carDescriptor.getConstrainedProperties().size() );
+
+//property has constraint
+assertNotNull( carDescriptor.getConstraintsForProperty( "licensePlate" ) );
+
+//property is marked with @Valid
+assertNotNull( carDescriptor.getConstraintsForProperty( "driver" ) );
+
+//constraints from getter method in interface and implementation class are returned
+assertEquals(
+		2,
+		carDescriptor.getConstraintsForProperty( "manufacturer" )
+				.getConstraintDescriptors()
+				.size()
+);
+
+//property is not constrained
+assertNull( carDescriptor.getConstraintsForProperty( "modelName" ) );
+
+//driveAway(int), load(List&lt;Person&gt;, List&lt;PieceOfLuggage&gt;)
+assertEquals( 2, carDescriptor.getConstrainedMethods( MethodType.NON_GETTER ).size() );
+
+//driveAway(int), getManufacturer(), getDriver(), load(List&lt;Person&gt;, List&lt;PieceOfLuggage&gt;)
+assertEquals(
+		4,
+		carDescriptor.getConstrainedMethods( MethodType.NON_GETTER, MethodType.GETTER )
+				.size()
+);
+
+//driveAway(int)
+assertNotNull( carDescriptor.getConstraintsForMethod( "driveAway", int.class ) );
+
+//getManufacturer()
+assertNotNull( carDescriptor.getConstraintsForMethod( "getManufacturer" ) );
+
+//setManufacturer() is not constrained
+assertNull( carDescriptor.getConstraintsForMethod( "setManufacturer", String.class ) );
+
+//Car(String, String, Person, String)
+assertEquals( 1, carDescriptor.getConstrainedConstructors().size() );
+
+//Car(String, String, Person, String)
+assertNotNull(
+		carDescriptor.getConstraintsForConstructor(
+				String.class,
+				String.class,
+				Person.class,
+				String.class
+		)
+);</code></pre></div></div><br class="example-break"/><p>You can determine whether the specified class hosts any class- or property-level constraints via
+<code class="literal">isBeanConstrained()</code>. Method or constructor constraints are not considered by <code class="literal">isBeanConstrained()</code>.</p><p>The method <code class="literal">getConstraintDescriptors()</code> is common to all descriptors derived from <code class="literal">ElementDescriptor</code>
+(see <a class="xref" href="ch09.html#validator-metadata-api-elementdescriptor" title="9.4. ElementDescriptor">Section 9.4, “<code class="literal">ElementDescriptor</code>”</a>) and returns a set of descriptors representing the
+constraints directly declared on the given element. In case of <code class="literal">BeanDescriptor</code>, the bean’s class-
+level constraints are returned. More details on <code class="literal">ConstraintDescriptor</code> can be found in
+<a class="xref" href="ch09.html#section-constraint-descriptor" title="9.6. ConstraintDescriptor">Section 9.6, “<code class="literal">ConstraintDescriptor</code>”</a>.</p><p>Via <code class="literal">getConstraintsForProperty()</code>, <code class="literal">getConstraintsForMethod()</code> and <code class="literal">getConstraintsForConstructor()</code> you
+can obtain a descriptor representing one given property or executable element, identified by its
+name and, in case of methods and constructors, parameter types. The different descriptor types
+returned by these methods are described in the following sections.</p><p>Note that these methods consider constraints declared at super-types according to the rules for
+constraint inheritance as described in <a class="xref" href="ch02.html#section-constraint-inheritance" title="2.1.5. Constraint inheritance">Section 2.1.5, “Constraint inheritance”</a>. An example is the
+descriptor for the <code class="literal">manufacturer</code> property, which provides access to all constraints defined on
+<code class="literal">Vehicle#getManufacturer()</code> and the implementing method <code class="literal">Car#getManufacturer()</code>. <code class="literal">null</code> is returned in
+case the specified element does not exist or is not constrained.</p><p>The methods <code class="literal">getConstrainedProperties()</code>, <code class="literal">getConstrainedMethods()</code> and <code class="literal">getConstrainedConstructors()</code>
+return (potentially empty) sets with all constrained properties, methods and constructors,
+respectively. An element is considered constrained, if it has at least one constraint or is marked
+for cascaded validation. When invoking <code class="literal">getConstrainedMethods()</code>, you can specify the type of the
+methods to be returned (getters, non-getters or both).</p></div><div class="section" title="9.2. PropertyDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="section-property-descriptor"/>9.2. <code class="literal">PropertyDescriptor</code></h2></div></div></div><p>The interface
+<code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/PropertyDescriptor.html">PropertyDescriptor</a></code> represents one given property of a
+class. It is transparent whether constraints are declared on a field or a property getter, provided
+the JavaBeans naming conventions are respected. <a class="xref" href="ch09.html#metadata-example-using-propertydescriptor" title="Example 9.3. Using PropertyDescriptor">Example 9.3, “Using <code class="literal">PropertyDescriptor</code>”</a> shows
+how to use the <code class="literal">PropertyDescriptor</code> interface.</p><div class="example"><a id="metadata-example-using-propertydescriptor"/><p class="title"><strong>Example 9.3. Using <code class="literal">PropertyDescriptor</code></strong></p><div class="example-contents"><pre><code class="language-java">PropertyDescriptor licensePlateDescriptor = carDescriptor.getConstraintsForProperty(
+		"licensePlate"
+);
+
+//"licensePlate" has two constraints, is not marked with @Valid and defines no group conversions
+assertEquals( "licensePlate", licensePlateDescriptor.getPropertyName() );
+assertEquals( 2, licensePlateDescriptor.getConstraintDescriptors().size() );
+assertTrue( licensePlateDescriptor.hasConstraints() );
+assertFalse( licensePlateDescriptor.isCascaded() );
+assertTrue( licensePlateDescriptor.getGroupConversions().isEmpty() );
+
+PropertyDescriptor driverDescriptor = carDescriptor.getConstraintsForProperty( "driver" );
+
+//"driver" has no constraints, is marked with @Valid and defines one group conversion
+assertEquals( "driver", driverDescriptor.getPropertyName() );
+assertTrue( driverDescriptor.getConstraintDescriptors().isEmpty() );
+assertFalse( driverDescriptor.hasConstraints() );
+assertTrue( driverDescriptor.isCascaded() );
+assertEquals( 1, driverDescriptor.getGroupConversions().size() );</code></pre></div></div><br class="example-break"/><p>Using <code class="literal">getConstrainedDescriptors()</code>, you can retrieve a set of <code class="literal">ConstraintDescriptors</code> providing more
+information on the individual constraints of a given property. The method <code class="literal">isCascaded()</code> returns
+<code class="literal">true</code>, if the property is marked for cascaded validation (either using the <code class="literal">@Valid</code> annotation or via
+XML), <code class="literal">false</code> otherwise. Any configured group conversions are returned by <code class="literal">getGroupConversions()</code>. See
+<a class="xref" href="ch09.html#section-group-conversion-descriptor" title="9.5. GroupConversionDescriptor">Section 9.5, “<code class="literal">GroupConversionDescriptor</code>”</a> for more details on <code class="literal">GroupConversionDescriptor</code>.</p></div><div class="section" title="9.3. MethodDescriptor and ConstructorDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="__literal_methoddescriptor_literal_and_literal_constructordescriptor_literal"/>9.3. <code class="literal">MethodDescriptor</code> and <code class="literal">ConstructorDescriptor</code></h2></div></div></div><p>Constrained methods and constructors are represented by the interfaces
+<code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/MethodDescriptor.html">MethodDescriptor</a></code>
+and <code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/ConstructorDescriptor.html">ConstructorDescriptor</a></code>, respectively.
+<a class="xref" href="ch09.html#metadata-example-using-methodandconstructordescriptor" title="Example 9.4. Using MethodDescriptor and ConstructorDescriptor">Example 9.4, “Using <code class="literal">MethodDescriptor</code> and <code class="literal">ConstructorDescriptor</code>”</a> demonstrates how to work with these
+descriptors.</p><div class="example"><a id="metadata-example-using-methodandconstructordescriptor"/><p class="title"><strong>Example 9.4. Using <code class="literal">MethodDescriptor</code> and <code class="literal">ConstructorDescriptor</code></strong></p><div class="example-contents"><pre><code class="language-java">//driveAway(int) has a constrained parameter and an unconstrained return value
+MethodDescriptor driveAwayDescriptor = carDescriptor.getConstraintsForMethod(
+		"driveAway",
+		int.class
+);
+assertEquals( "driveAway", driveAwayDescriptor.getName() );
+assertTrue( driveAwayDescriptor.hasConstrainedParameters() );
+assertFalse( driveAwayDescriptor.hasConstrainedReturnValue() );
+
+//always returns an empty set; constraints are retrievable by navigating to
+//one of the sub-descriptors, e.g. for the return value
+assertTrue( driveAwayDescriptor.getConstraintDescriptors().isEmpty() );
+
+ParameterDescriptor speedDescriptor = driveAwayDescriptor.getParameterDescriptors()
+		.get( 0 );
+
+//The "speed" parameter is located at index 0, has one constraint and is not cascaded
+//nor does it define group conversions
+assertEquals( "arg0", speedDescriptor.getName() );
+assertEquals( 0, speedDescriptor.getIndex() );
+assertEquals( 1, speedDescriptor.getConstraintDescriptors().size() );
+assertFalse( speedDescriptor.isCascaded() );
+assert speedDescriptor.getGroupConversions().isEmpty();
+
+//getDriver() has no constrained parameters but its return value is marked for cascaded
+//validation and declares one group conversion
+MethodDescriptor getDriverDescriptor = carDescriptor.getConstraintsForMethod(
+		"getDriver"
+);
+assertFalse( getDriverDescriptor.hasConstrainedParameters() );
+assertTrue( getDriverDescriptor.hasConstrainedReturnValue() );
+
+ReturnValueDescriptor returnValueDescriptor = getDriverDescriptor.getReturnValueDescriptor();
+assertTrue( returnValueDescriptor.getConstraintDescriptors().isEmpty() );
+assertTrue( returnValueDescriptor.isCascaded() );
+assertEquals( 1, returnValueDescriptor.getGroupConversions().size() );
+
+//load(List&lt;Person&gt;, List&lt;PieceOfLuggage&gt;) has one cross-parameter constraint
+MethodDescriptor loadDescriptor = carDescriptor.getConstraintsForMethod(
+		"load",
+		List.class,
+		List.class
+);
+assertTrue( loadDescriptor.hasConstrainedParameters() );
+assertFalse( loadDescriptor.hasConstrainedReturnValue() );
+assertEquals(
+		1,
+		loadDescriptor.getCrossParameterDescriptor().getConstraintDescriptors().size()
+);
+
+//Car(String, String, Person, String) has one constrained parameter
+ConstructorDescriptor constructorDescriptor = carDescriptor.getConstraintsForConstructor(
+		String.class,
+		String.class,
+		Person.class,
+		String.class
+);
+
+assertEquals( "Car", constructorDescriptor.getName() );
+assertFalse( constructorDescriptor.hasConstrainedReturnValue() );
+assertTrue( constructorDescriptor.hasConstrainedParameters() );
+assertEquals(
+		1,
+		constructorDescriptor.getParameterDescriptors()
+				.get( 0 )
+				.getConstraintDescriptors()
+				.size()
+);</code></pre></div></div><br class="example-break"/><p><code class="literal">getName()</code> returns the name of the given method or constructor. The methods
+<code class="literal">hasConstrainedParameters()</code> and <code class="literal">hasConstrainedReturnValue()</code> can be used to perform a quick check
+whether an executable element has any parameter constraints (either constraints on single parameters
+or cross-parameter constraints) or return value constraints.</p><p>Note that any constraints are not directly exposed on <code class="literal">MethodDescriptor</code> and <code class="literal">ConstructorDescriptor</code>,
+but rather on dedicated descriptors representing an executable’s parameters, its return value and
+its cross-parameter constraints. To get hold of one of these descriptors, invoke
+<code class="literal">getParameterDescriptors()</code>, <code class="literal">getReturnValueDescriptor()</code> or <code class="literal">getCrossParameterDescriptor()</code>,
+respectively.</p><p>These descriptors provide access to the element’s constraints (<code class="literal">getConstraintDescriptors()</code>) and, in
+case of parameters and return value, to its configuration for cascaded validation (<code class="literal">isValid()</code> and
+<code class="literal">getGroupConversions()</code>). For parameters, you also can retrieve the index and the name, as returned by
+the currently used parameter name provider (see <a class="xref" href="ch08.html#section-parameter-name-provider" title="8.2.4. ParameterNameProvider">Section 8.2.4, “<code class="literal">ParameterNameProvider</code>”</a>) via <code class="literal">getName()</code>
+and <code class="literal">getIndex()</code>.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>Getter methods following the JavaBeans naming conventions are considered as bean properties but also
+as constrained methods.</p><p>That means you can retrieve the related metadata either by obtaining a <code class="literal">PropertyDescriptor</code> (e.g.
+<code class="literal">BeanDescriptor.getConstraintsForProperty("foo")</code>) or by examining the return value descriptor of the
+getter’s <code class="literal">MethodDescriptor</code> (e.g.
+<code class="literal">BeanDescriptor.getConstraintsForMethod("getFoo").getReturnValueDescriptor())</code>.</p></div></div><div class="section" title="9.4. ElementDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="validator-metadata-api-elementdescriptor"/>9.4. <code class="literal">ElementDescriptor</code></h2></div></div></div><p>The <code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/ElementDescriptor.html">ElementDiscriptor</a></code>
+interface is the common base class for the
+individual descriptor types such as <code class="literal">BeanDescriptor</code>, <code class="literal">PropertyDescriptor</code> etc. Besides
+<code class="literal">getConstraintDescriptors()</code> it provides some more methods common to all descriptors.</p><p><code class="literal">hasConstraints()</code> allows for a quick check whether an element has any direct constraints (e.g. class-
+level constraints in case of <code class="literal">BeanDescriptor</code>). <code class="literal">getElementClass()</code> returns the Java type of the element
+represented by a given descriptor. More specifically, the method returns</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">the object type when invoked on <code class="literal">BeanDescriptor</code>,</li><li class="listitem">the type of a property or parameter when invoked on <code class="literal">PropertyDescriptor</code> or <code class="literal">ParameterDescriptor</code>
+respectively,</li><li class="listitem"><code class="literal">Object[].class</code> when invoked on <code class="literal">CrossParameterDescriptor</code>,</li><li class="listitem">the return type when invoked on <code class="literal">ConstructorDescriptor</code>, <code class="literal">MethodDescriptor</code> or <code class="literal">ReturnValueDescriptor</code>.
+<code class="literal">void.class</code> will be returned for methods which don’t have a return value.</li></ul></div><p><a class="xref" href="ch09.html#metadata-example-using-elementdescriptor" title="Example 9.5. Using ElementDescriptor methods">Example 9.5, “Using <code class="literal">ElementDescriptor methods</code>”</a> shows how these methods are used.</p><div class="example"><a id="metadata-example-using-elementdescriptor"/><p class="title"><strong>Example 9.5. Using <code class="literal">ElementDescriptor methods</code></strong></p><div class="example-contents"><pre><code class="language-java">PropertyDescriptor manufacturerDescriptor = carDescriptor.getConstraintsForProperty(
+		"manufacturer"
+);
+
+assertTrue( manufacturerDescriptor.hasConstraints() );
+assertEquals( String.class, manufacturerDescriptor.getElementClass() );
+
+CrossParameterDescriptor loadCrossParameterDescriptor = carDescriptor.getConstraintsForMethod(
+		"load",
+		List.class,
+		List.class
+).getCrossParameterDescriptor();
+
+assertTrue( loadCrossParameterDescriptor.hasConstraints() );
+assertEquals( Object[].class, loadCrossParameterDescriptor.getElementClass() );</code></pre></div></div><br class="example-break"/><p>Finally, <code class="literal">ElementDescriptor</code> offers access to the <code class="literal">ConstraintFinder</code> API which allows you to query for
+constraint metadata in a fine grained way. <a class="xref" href="ch09.html#example-constraint-finder" title="Example 9.6. Usage of ConstraintFinder">Example 9.6, “Usage of <code class="literal">ConstraintFinder</code>”</a> shows how to retrieve a
+<code class="literal">ConstraintFinder</code> instance via <code class="literal">findConstraints()</code> and use the API to query for constraint metadata.</p><div class="example"><a id="example-constraint-finder"/><p class="title"><strong>Example 9.6. Usage of <code class="literal">ConstraintFinder</code></strong></p><div class="example-contents"><pre><code class="language-java">PropertyDescriptor manufacturerDescriptor = carDescriptor.getConstraintsForProperty(
+		"manufacturer"
+);
+
+//"manufacturer" constraints are declared on the getter, not the field
+assertTrue(
+		manufacturerDescriptor.findConstraints()
+				.declaredOn( ElementType.FIELD )
+				.getConstraintDescriptors()
+				.isEmpty()
+);
+
+//@NotNull on Vehicle#getManufacturer() is part of another group
+assertEquals(
+		1,
+		manufacturerDescriptor.findConstraints()
+				.unorderedAndMatchingGroups( Default.class )
+				.getConstraintDescriptors()
+				.size()
+);
+
+//@Size on Car#getManufacturer()
+assertEquals(
+		1,
+		manufacturerDescriptor.findConstraints()
+				.lookingAt( Scope.LOCAL_ELEMENT )
+				.getConstraintDescriptors()
+				.size()
+);
+
+//@Size on Car#getManufacturer() and @NotNull on Vehicle#getManufacturer()
+assertEquals(
+		2,
+		manufacturerDescriptor.findConstraints()
+				.lookingAt( Scope.HIERARCHY )
+				.getConstraintDescriptors()
+				.size()
+);
+
+//Combining several filter options
+assertEquals(
+		1,
+		manufacturerDescriptor.findConstraints()
+				.declaredOn( ElementType.METHOD )
+				.lookingAt( Scope.HIERARCHY )
+				.unorderedAndMatchingGroups( Vehicle.Basic.class )
+				.getConstraintDescriptors()
+				.size()
+);</code></pre></div></div><br class="example-break"/><p>Via <code class="literal">declaredOn()</code> you can search for <code class="literal">ConstraintDescriptors</code> declared on certain element types. This is
+useful to find property constraints declared on either fields or getter methods.</p><p><code class="literal">unorderedAndMatchingGroups()</code> restricts the resulting constraints to those matching the given
+validation group(s).</p><p><code class="literal">lookingAt()</code> allows to distinguish between constraints directly specified on the element
+(<code class="literal">Scope.LOCAL_ELEMENT</code>) or constraints belonging to the element but hosted anywhere in the class
+hierarchy (<code class="literal">Scope.HIERARCHY</code>).</p><p>You can also combine the different options as shown in the last example.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Warning</h2><p>Order is not respected by <code class="literal">unorderedAndMatchingGroups()</code>, but group inheritance and inheritance via
+sequence are.</p></div></div><div class="section" title="9.5. GroupConversionDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="section-group-conversion-descriptor"/>9.5. <code class="literal">GroupConversionDescriptor</code></h2></div></div></div><p>All those descriptor types that represent elements which can be subject of cascaded validation
+(i.e., <code class="literal">PropertyDescriptor</code>, <code class="literal">ParameterDescriptor</code> and <code class="literal">ReturnValueDescriptor</code>) provide access to the
+element’s group conversions via <code class="literal">getGroupConversions()</code>. The returned set contains a
+<code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/GroupConversionDescriptor.html">GroupConversionDescriptor</a></code>
+for each configured conversion, allowing to retrieve
+source and target groups of the conversion. <a class="xref" href="ch09.html#metadata-example-using-groupconversiondescriptor" title="Example 9.7. Using GroupConversionDescriptor">Example 9.7, “Using <code class="literal">GroupConversionDescriptor</code>”</a>
+shows an example.</p><div class="example"><a id="metadata-example-using-groupconversiondescriptor"/><p class="title"><strong>Example 9.7. Using <code class="literal">GroupConversionDescriptor</code></strong></p><div class="example-contents"><pre><code class="language-java">PropertyDescriptor driverDescriptor = carDescriptor.getConstraintsForProperty( "driver" );
+
+Set&lt;GroupConversionDescriptor&gt; groupConversions = driverDescriptor.getGroupConversions();
+assertEquals( 1, groupConversions.size() );
+
+GroupConversionDescriptor groupConversionDescriptor = groupConversions.iterator()
+		.next();
+assertEquals( Default.class, groupConversionDescriptor.getFrom() );
+assertEquals( Person.Basic.class, groupConversionDescriptor.getTo() );</code></pre></div></div><br class="example-break"/></div><div class="section" title="9.6. ConstraintDescriptor"><div class="titlepage"><div><div><h2 class="title"><a id="section-constraint-descriptor"/>9.6. <code class="literal">ConstraintDescriptor</code></h2></div></div></div><p>Last but not least, the
+<code class="literal"><a class="link" href="http://docs.jboss.org/hibernate/beanvalidation/spec/1.1/api/index.html?javax/validation/metadata/ConstraintDescriptor.html">ConstraintDescriptor</a></code>
+interface describes a
+single constraint together with its composing constraints. Via an instance of this interface you get
+access to the constraint annotation and its parameters.</p><p><a class="xref" href="ch09.html#metadata-example-using-constraintdescriptor" title="Example 9.8. Using ConstraintDescriptor">Example 9.8, “Using <code class="literal">ConstraintDescriptor</code>”</a>
+shows how to retrieve default constraint attributes (such as message template, groups etc.) as well
+as custom constraint attributes (<code class="literal">piecesOfLuggagePerPassenger</code>) and other metadata such as the
+constraint’s annotation type and its validators from a <code class="literal">ConstraintDescriptor</code>.</p><div class="example"><a id="metadata-example-using-constraintdescriptor"/><p class="title"><strong>Example 9.8. Using <code class="literal">ConstraintDescriptor</code></strong></p><div class="example-contents"><pre><code class="language-java">//descriptor for the @LuggageCountMatchesPassengerCount constraint on the
+//load(List&lt;Person&gt;, List&lt;PieceOfLuggage&gt;) method
+ConstraintDescriptor&lt;?&gt; constraintDescriptor = carDescriptor.getConstraintsForMethod(
+		"load",
+		List.class,
+		List.class
+).getCrossParameterDescriptor().getConstraintDescriptors().iterator().next();
+
+//constraint type
+assertEquals(
+		LuggageCountMatchesPassengerCount.class,
+		constraintDescriptor.getAnnotation().annotationType()
+);
+
+//standard constraint attributes
+assertEquals( SeverityInfo.class, constraintDescriptor.getPayload().iterator().next() );
+assertEquals(
+		ConstraintTarget.PARAMETERS,
+		constraintDescriptor.getValidationAppliesTo()
+);
+assertEquals( Default.class, constraintDescriptor.getGroups().iterator().next() );
+assertEquals(
+		"There must not be more than {piecesOfLuggagePerPassenger} pieces of luggage per " +
+		"passenger.",
+		constraintDescriptor.getMessageTemplate()
+);
+
+//custom constraint attribute
+assertEquals(
+		2,
+		constraintDescriptor.getAttributes().get( "piecesOfLuggagePerPassenger" )
+);
+
+//no composing constraints
+assertTrue( constraintDescriptor.getComposingConstraints().isEmpty() );
+
+//validator class
+assertEquals(
+		Arrays.&lt;Class&lt;?&gt;&gt;asList( LuggageCountMatchesPassengerCount.Validator.class ),
+		constraintDescriptor.getConstraintValidatorClasses()
+);</code></pre></div></div><br class="example-break"/></div></div><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript" src="highlight.js/highlight.pack.js"> </script><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+dataLayer = [{'channel' : 'Hibernate', 'additional_tracking_code' : 'UA-45270411-3'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0" style="display:none;visibility:hidden"> </iframe></noscript><hr xmlns="" xmlns:d="http://docbook.org/ns/docbook"/><a xmlns="" xmlns:d="http://docbook.org/ns/docbook" href="legalnotice.html"/><ul class="docnav"><li class="previous"><a accesskey="p" href="ch08.html"><strong>Prev</strong>Chapter 8. Bootstrapping</a></li><li class="up"><a accesskey="u" href="#"><strong>Up</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Home</strong></a></li><li class="next"><a accesskey="n" href="ch10.html"><strong>Next</strong>Chapter 10. Integrating with other frameworks</a></li></ul></body></html>

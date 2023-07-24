@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 12. Annotation Processor</title><link rel="stylesheet" type="text/css" href="css/hibernate.css"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><link rel="home" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="up" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="prev" href="ch11.html" title="Chapter 11. Hibernate Validator Specifics"/><link rel="next" href="ch13.html" title="Chapter 13. Further reading"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head><body><p id="title"><a href="http://www.hibernate.org" class="site_href"><strong>Hibernate.org</strong></a><a href="http://hibernate.org/Documentation/DocumentationOverview" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch11.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch13.html"><strong>Next</strong></a></li></ul><div class="chapter" title="Chapter 12. Annotation Processor"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotation-processor"/>Chapter 12. Annotation Processor</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-prerequisites">12.1. Prerequisites</a></span></dt><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-features">12.2. Features</a></span></dt><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-options">12.3. Options</a></span></dt><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-usage">12.4. Using the Annotation Processor</a></span></dt><dd><dl><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-commandline">12.4.1. Command line builds</a></span></dt><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-ide">12.4.2. IDE builds</a></span></dt></dl></dd><dt><span class="section"><a href="ch12.html#validator-annotationprocessor-known-issues">12.5. Known issues</a></span></dt></dl></div><p>Have you ever caught yourself by unintentionally doing things like</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">specifying constraint annotations at unsupported data types (e.g. by annotating a String with <code class="literal">@Past</code>)</li><li class="listitem">annotating the setter of a JavaBeans property (instead of the getter method)</li><li class="listitem">annotating static fields/methods with constraint annotations (which is not supported)?</li></ul></div><p>Then the Hibernate Validator Annotation Processor is the right thing for you. It helps preventing
+such mistakes by plugging into the build process and raising compilation errors whenever constraint
+annotations are incorrectly used.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>You can find the Hibernate Validator Annotation Processor as part of the distribution bundle on
+<a class="link" href="http://sourceforge.net/projects/hibernate/files/hibernate-validator">Sourceforge</a> or in the
+usual Maven repositories such as Maven Central under the GAV <code class="literal">org.hibernate:hibernate-validator-
+annotation-processor:5.2.4.Final</code>.</p></div><div class="section" title="12.1. Prerequisites"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotationprocessor-prerequisites"/>12.1. Prerequisites</h2></div></div></div><p>The Hibernate Validator Annotation Processor is based on the "Pluggable Annotation Processing API"
+as defined by <a class="link" href="http://jcp.org/en/jsr/detail?id=269">JSR 269</a> which is part of the Java
+Platform since Java 6.</p></div><div class="section" title="12.2. Features"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotationprocessor-features"/>12.2. Features</h2></div></div></div><p>As of Hibernate Validator 5.2.4.Final the Hibernate Validator Annotation Processor checks that:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">constraint annotations are allowed for the type of the annotated element</li><li class="listitem">only non-static fields or methods are annotated with constraint annotations</li><li class="listitem">only non-primitive fields or methods are annotated with <code class="literal">@Valid</code></li><li class="listitem">only such methods are annotated with constraint annotations which are valid JavaBeans
+getter methods (optionally, see below)</li><li class="listitem">only such annotation types are annotated with constraint annotations which are constraint
+annotations themselves</li><li class="listitem">definition of dynamic default group sequence with @GroupSequenceProvider is valid</li></ul></div></div><div class="section" title="12.3. Options"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotationprocessor-options"/>12.3. Options</h2></div></div></div><p>The behavior of the Hibernate Validator Annotation Processor can be controlled using the
+<a class="link" href="http://java.sun.com/javase/6/docs/technotes/tools/windows/javac.html#options">processor options</a>
+listed in table <a class="xref" href="ch12.html#table_processor_options" title="Table 12.1. Hibernate Validator Annotation Processor options">Table 12.1, “Hibernate Validator Annotation Processor options”</a>:</p><div class="table"><a id="table_processor_options"/><p class="title"><strong>Table 12.1. Hibernate Validator Annotation Processor options</strong></p><div class="table-contents"><table summary="Hibernate Validator Annotation Processor options" border="1"><colgroup><col width="50*" class="col_1"/><col width="50*" class="col_2"/></colgroup><thead><tr><th align="left" valign="top">Option</th><th align="left" valign="top">Explanation</th></tr></thead><tbody><tr><td align="left" valign="top"><p><code class="literal">diagnosticKind</code></p></td><td align="left" valign="top"><p>Controls how constraint problems are reported. Must be the
+            string representation of one of the values from the enum <code class="literal">javax.tools.Diagnostic.Kind</code>,
+            e.g. <code class="literal">WARNING</code>. A value of <code class="literal">ERROR</code> will cause compilation to halt whenever the AP detects
+            a constraint problem. Defaults to <code class="literal">ERROR</code>.</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">methodConstraintsSupported</code></p></td><td align="left" valign="top"><p>Controls whether constraints are allowed at methods of any
+            kind. Must be set to <code class="literal">true</code> when working with method level constraints as supported by
+            Hibernate Validator. Can be set to <code class="literal">false</code> to allow constraints only at
+            JavaBeans getter methods as defined by the Bean Validation API. Defaults to <code class="literal">true</code>.</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">verbose</code></p></td><td align="left" valign="top"><p>Controls whether detailed processing information shall be
+            displayed or not, useful for debugging purposes. Must be either
+            <code class="literal">true</code> or <code class="literal">false</code>. Defaults to <code class="literal">false</code>.</p></td></tr></tbody></table></div></div><br class="table-break"/></div><div class="section" title="12.4. Using the Annotation Processor"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotationprocessor-usage"/>12.4. Using the Annotation Processor</h2></div></div></div><p>This section shows in detail how to integrate the Hibernate Validator Annotation Processor into
+command line builds (javac, Ant, Maven) as well as IDE-based builds (Eclipse, IntelliJ IDEA,
+NetBeans).</p><div class="section" title="12.4.1. Command line builds"><div class="titlepage"><div><div><h3 class="title"><a id="validator-annotationprocessor-commandline"/>12.4.1. Command line builds</h3></div></div></div><div class="section" title="12.4.1.1. javac"><div class="titlepage"><div><div><h4 class="title"><a id="validator-annotationprocessor-javac"/>12.4.1.1. javac</h4></div></div></div><p>When compiling on the command line using
+<a class="link" href="http://java.sun.com/javase/6/docs/technotes/guides/javac/index.html">javac</a>, specify the JAR
+<span class="emphasis"><em>hibernate-validator-annotation-processor-5.2.4.Final.jar</em></span> using the "processorpath" option as shown in
+the following listing. The processor will be detected automatically by the compiler and invoked
+during compilation.</p><div class="example"><a id="d0e7112"/><p class="title"><strong>Example 12.1. Using the annotation processor with javac</strong></p><div class="example-contents"><pre class="screen">javac src/main/java/org/hibernate/validator/ap/demo/Car.java \
+   -cp /path/to/validation-api-1.1.0.Final.jar \
+   -processorpath /path/to/hibernate-validator-annotation-processor-5.2.4.Final.jar</pre></div></div><br class="example-break"/></div><div class="section" title="12.4.1.2. Apache Ant"><div class="titlepage"><div><div><h4 class="title"><a id="validator-annotationprocessor-ant"/>12.4.1.2. Apache Ant</h4></div></div></div><p>Similar to directly working with javac, the annotation processor can be added as as compiler
+argument when invoking the <a class="link" href="http://ant.apache.org/manual/CoreTasks/javac.html">javac task</a>
+for <a class="link" href="http://ant.apache.org/">Apache Ant</a>:</p><div class="example"><a id="d0e7128"/><p class="title"><strong>Example 12.2. Using the annotation processor with An</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;javac srcdir="src/main"
+       destdir="build/classes"
+       classpath="/path/to/validation-api-1.1.0.Final.jar"&gt;
+       &lt;compilerarg value="-processorpath" /&gt;
+       &lt;compilerarg value="/path/to/hibernate-validator-annotation-processor-5.2.4.Final.jar"/&gt;
+&lt;/javac&gt;</code></pre></div></div><br class="example-break"/></div><div class="section" title="12.4.1.3. Maven"><div class="titlepage"><div><div><h4 class="title"><a id="_maven"/>12.4.1.3. Maven</h4></div></div></div><p>There are several options for integrating the annotation processor with
+<a class="link" href="http://maven.apache.org/">Apache Maven</a>. Generally it is sufficient to add the Hibernate
+Validator Annotation Processor as dependency to your project:</p><div class="example"><a id="d0e7141"/><p class="title"><strong>Example 12.3. Adding the HV Annotation Processor as dependency</strong></p><div class="example-contents"><pre><code class="language-xml">...
+&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-validator-annotation-processor&lt;/artifactId&gt;
+    &lt;version&gt;5.2.4.Final&lt;/version&gt;
+&lt;/dependency&gt;
+...</code></pre></div></div><br class="example-break"/><p>The processor will then be executed automatically by the compiler. This basically works, but comes
+with the disadavantage that in some cases messages from the annotation processor are not displayed
+(see <a class="link" href="http://jira.codehaus.org/browse/MCOMPILER-66">MCOMPILER-66</a>).</p><p>Another option is using the <a class="link" href="http://code.google.com/p/maven-annotation-plugin">Maven Annotation Plugin</a>.
+To work with this plugin, disable the standard annotation processing performed
+by the compiler plugin and configure the annotation plugin by specifying an execution and adding the
+Hibernate Validator Annotation Processor as plugin dependency (that way the processor is not visible
+on the project’s actual classpath):</p><div class="example"><a id="d0e7156"/><p class="title"><strong>Example 12.4. Configuring the Maven Annotation Plugin</strong></p><div class="example-contents"><pre><code class="language-xml">...
+&lt;plugin&gt;
+    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;source&gt;1.6&lt;/source&gt;
+        &lt;target&gt;1.6&lt;/target&gt;
+        &lt;compilerArgument&gt;-proc:none&lt;/compilerArgument&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;org.bsc.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-processor-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2.1&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;process&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;process&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;process-sources&lt;/phase&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-validator-annotation-processor&lt;/artifactId&gt;
+            &lt;version&gt;5.2.4.Final&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+...</code></pre></div></div><br class="example-break"/></div></div><div class="section" title="12.4.2. IDE builds"><div class="titlepage"><div><div><h3 class="title"><a id="validator-annotationprocessor-ide"/>12.4.2. IDE builds</h3></div></div></div><div class="section" title="12.4.2.1. Eclipse"><div class="titlepage"><div><div><h4 class="title"><a id="_eclipse"/>12.4.2.1. Eclipse</h4></div></div></div><p>Do the following to use the annotation processor within the <a class="link" href="http://www.eclipse.org/">Eclipse</a> IDE:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">Right-click your project, choose "Properties"</li><li class="listitem">Go to "Java Compiler" and make sure, that "Compiler compliance level" is set to "1.6".
+Otherwise the processor won’t be activated</li><li class="listitem">Go to "Java Compiler - Annotation Processing" and choose "Enable annotation processing"</li><li class="listitem">Go to "Java Compiler - Annotation Processing - Factory Path" and add the JAR
+hibernate-validator-annotation-processor-5.2.4.Final.jar</li><li class="listitem">Confirm the workspace rebuild</li></ul></div><p>You now should see any annotation problems as regular error markers within the editor and in the
+"Problem" view:</p><div class="informalfigure"><div class="mediaobject"><img src="images/annotation_processor_eclipse.png" alt="annotation processor eclipse"/></div></div></div><div class="section" title="12.4.2.2. IntelliJ IDEA"><div class="titlepage"><div><div><h4 class="title"><a id="validator-annotationprocessor-idea"/>12.4.2.2. IntelliJ IDEA</h4></div></div></div><p>The following steps must be followed to use the annotation processor within
+<a class="link" href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (version 9 and above):</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">Go to "File", then "Settings",</li><li class="listitem">Expand the node "Compiler", then "Annotation Processors"</li><li class="listitem">Choose "Enable annotation processing" and enter the following as "Processor path":
+/path/to/hibernate-validator-annotation-processor-5.2.4.Final.jar</li><li class="listitem">Add the processor’s fully qualified name org.hibernate.validator.ap.ConstraintValidationProcessor
+to the "Annotation Processors" list</li><li class="listitem">If applicable add you module to the "Processed Modules" list</li></ul></div><p>Rebuilding your project then should show any erronous constraint annotations:</p><div class="informalfigure"><div class="mediaobject"><img src="images/annotation_processor_intellij.png" alt="annotation processor intellij"/></div></div></div><div class="section" title="12.4.2.3. NetBeans"><div class="titlepage"><div><div><h4 class="title"><a id="validator-annotationprocessor-netbeans"/>12.4.2.3. NetBeans</h4></div></div></div><p>Starting with version 6.9, also the <a class="link" href="http://www.netbeans.org/">NetBeans</a> IDE supports using
+annotation processors within the IDE build. To do so, do the following:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">Right-click your project, choose "Properties"</li><li class="listitem">Go to "Libraries", tab "Processor", and add the JAR hibernate-validator-annotation-processor-5.2.4.Final.jar</li><li class="listitem">Go to "Build - Compiling", select "Enable Annotation Processing" and "Enable Annotation Processing
+in Editor". Add the annotation processor by specifying its fully qualified name
+org.hibernate.validator.ap.ConstraintValidationProcessor</li></ul></div><p>Any constraint annotation problems will then be marked directly within the editor:</p><div class="informalfigure"><div class="mediaobject"><img src="images/annotation_processor_netbeans.png" alt="annotation processor netbeans"/></div></div></div></div></div><div class="section" title="12.5. Known issues"><div class="titlepage"><div><div><h2 class="title"><a id="validator-annotationprocessor-known-issues"/>12.5. Known issues</h2></div></div></div><p>The following known issues exist as of May 2010:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><a class="link" href="https://hibernate.atlassian.net/browse/HV-308">HV-308</a>: Additional validators
+registered for a constraint
+<a class="link" href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-xml-configuration">using XML</a> are
+not evaluated by the annotation processor.</li><li class="listitem">Sometimes custom constraints can’t be
+<a class="link" href="https://hibernate.atlassian.net/browse/HV-293">properly evaluated</a> when
+using the processor within Eclipse. Cleaning the project can help in these situations. This seems to
+be an issue with the Eclipse JSR 269 API implementation, but further investigation is required here.</li><li class="listitem">When using the processor within Eclipse, the check of dynamic default group sequence definitions
+doesn’t work. After further investigation, it seems to be an issue with the Eclipse JSR 269 API
+implementation.</li></ul></div></div></div><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript" src="highlight.js/highlight.pack.js"> </script><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+dataLayer = [{'channel' : 'Hibernate', 'additional_tracking_code' : 'UA-45270411-3'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0" style="display:none;visibility:hidden"> </iframe></noscript><hr xmlns="" xmlns:d="http://docbook.org/ns/docbook"/><a xmlns="" xmlns:d="http://docbook.org/ns/docbook" href="legalnotice.html"/><ul class="docnav"><li class="previous"><a accesskey="p" href="ch11.html"><strong>Prev</strong>Chapter 11. Hibernate Validator Specifics</a></li><li class="up"><a accesskey="u" href="#"><strong>Up</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Home</strong></a></li><li class="next"><a accesskey="n" href="ch13.html"><strong>Next</strong>Chapter 13. Further reading</a></li></ul></body></html>

@@ -1,0 +1,89 @@
+
+set 06, 2022 19:23:50.50 NEW SESSION
+set 06, 2022 19:23:50.50 [2022-09-06T22:23:50Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:23:50.56 [2022-09-06T22:23:50Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:23:50.57 [2022-09-06T22:23:50Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:37:15.07 [2022-09-06T22:37:15Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:37:15.07 [2022-09-06T22:37:15Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:37:15.23 [Parent 816, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+set 06, 2022 19:52:38.30 [2022-09-06T22:52:38Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:52:38.33 [2022-09-06T22:52:38Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 19:52:38.49 [Parent 4208, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+
+set 06, 2022 20:12:07.90 NEW SESSION
+set 06, 2022 20:12:07.90 [2022-09-06T23:12:07Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 20:12:07.90 [2022-09-06T23:12:07Z ERROR viaduct::backend::ffi] Missing HTTP status
+
+set 06, 2022 20:17:42.54 NEW SESSION
+set 06, 2022 20:17:42.54 [2022-09-06T23:17:42Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 20:17:42.54 [2022-09-06T23:17:42Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 20:17:42.88 [Parent 3864, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+set 06, 2022 20:18:52.86 [2022-09-06T23:18:52Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 06, 2022 20:18:52.89 [2022-09-06T23:18:52Z ERROR viaduct::backend::ffi] Missing HTTP status
+
+set 10, 2022 20:53:14.68 NEW SESSION
+set 10, 2022 20:53:14.69 [2022-09-10T23:53:14Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 10, 2022 20:53:14.75 [2022-09-10T23:53:14Z ERROR viaduct::backend::ffi] Missing HTTP status
+
+set 10, 2022 21:55:42.46 NEW SESSION
+set 10, 2022 21:55:42.46 [2022-09-11T00:55:42Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 10, 2022 21:55:42.46 [2022-09-11T00:55:42Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 10, 2022 21:55:42.87 [Parent 200, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+
+set 11, 2022 16:53:03.62 NEW SESSION
+set 11, 2022 16:53:03.62 [2022-09-11T19:53:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 11, 2022 16:53:03.73 [2022-09-11T19:53:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+
+set 27, 2022 15:22:39.58 NEW SESSION
+set 27, 2022 15:22:39.58 [2022-09-27T18:22:39Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:22:39.61 [2022-09-27T18:22:39Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:23:50.95 [2022-09-27T18:23:50Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 15:24:46.54 [2022-09-27T18:24:46Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:24:46.54 [2022-09-27T18:24:46Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:24:56.46 [2022-09-27T18:24:56Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 15:25:06.74 [2022-09-27T18:25:06Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:25:06.74 [2022-09-27T18:25:06Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:26:00.02 [2022-09-27T18:26:00Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 15:26:03.69 [2022-09-27T18:26:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:26:03.70 [2022-09-27T18:26:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:26:03.70 [2022-09-27T18:26:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:26:03.77 [Parent 7532, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+set 27, 2022 15:26:43.06 [2022-09-27T18:26:43Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 15:26:45.70 [2022-09-27T18:26:45Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:26:45.70 [2022-09-27T18:26:45Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 15:32:51.63 [2022-09-27T18:32:51Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 16:28:22.77 [Parent 5832, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+set 27, 2022 16:28:22.88 [2022-09-27T19:28:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:28:22.88 [2022-09-27T19:28:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:28:23.24 [Parent 5832, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+set 27, 2022 16:28:41.85 [GFX1-]: shader-cache: Timed out before finishing loads
+set 27, 2022 16:28:41.85 [2022-09-27T19:28:41Z ERROR webrender_bindings::program_cache] shader-cache: Timed out before finishing loads
+set 27, 2022 16:28:42.75 [2022-09-27T19:28:42Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 16:35:34.01 [2022-09-27T19:35:34Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:35:34.01 [2022-09-27T19:35:34Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:36:30.75 [2022-09-27T19:36:30Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 16:43:20.45 [2022-09-27T19:43:20Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 16:53:02.40 [2022-09-27T19:53:02Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:53:02.41 [2022-09-27T19:53:02Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:53:19.56 [2022-09-27T19:53:19Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 16:57:41.18 [2022-09-27T19:57:41Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:57:41.20 [2022-09-27T19:57:41Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 16:58:03.14 [2022-09-27T19:58:03Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+set 27, 2022 17:08:03.36 [2022-09-27T20:08:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 17:08:03.37 [2022-09-27T20:08:03Z ERROR viaduct::backend::ffi] Missing HTTP status
+set 27, 2022 17:08:03.48 [Parent 10388, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+
+nov 22, 2022 13:07:36.09 NEW SESSION
+nov 22, 2022 13:07:36.09 [2022-11-22T16:07:36Z ERROR webrender_bindings::program_cache] shader-cache: Timed out before finishing loads
+nov 22, 2022 13:07:36.17 [GFX1-]: shader-cache: Timed out before finishing loads
+nov 22, 2022 13:07:38.96 [2022-11-22T16:07:38Z ERROR glean_core::metrics::ping] Invalid reason code startup for ping background-update
+nov 22, 2022 13:08:22.24 [2022-11-22T16:08:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+nov 22, 2022 13:08:22.27 [2022-11-22T16:08:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+nov 22, 2022 13:08:22.96 [2022-11-22T16:08:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+nov 22, 2022 13:08:22.97 [2022-11-22T16:08:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+nov 22, 2022 13:08:22.97 [2022-11-22T16:08:22Z ERROR viaduct::backend::ffi] Missing HTTP status
+
+jul 21, 2023 18:02:53.28 NEW SESSION
+jul 21, 2023 18:02:53.28 [ERROR viaduct::backend::ffi] Missing HTTP status
+jul 21, 2023 18:02:53.36 [ERROR viaduct::backend::ffi] Missing HTTP status
+jul 21, 2023 18:02:53.36 [ERROR viaduct::backend::ffi] Missing HTTP status

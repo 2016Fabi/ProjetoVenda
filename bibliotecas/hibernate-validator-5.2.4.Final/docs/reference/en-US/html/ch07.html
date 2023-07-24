@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 7. Configuring via XML</title><link rel="stylesheet" type="text/css" href="css/hibernate.css"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><link rel="home" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="up" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="prev" href="ch06.html" title="Chapter 6. Creating custom constraints"/><link rel="next" href="ch08.html" title="Chapter 8. Bootstrapping"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head><body><p id="title"><a href="http://www.hibernate.org" class="site_href"><strong>Hibernate.org</strong></a><a href="http://hibernate.org/Documentation/DocumentationOverview" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch08.html"><strong>Next</strong></a></li></ul><div class="chapter" title="Chapter 7. Configuring via XML"><div class="titlepage"><div><div><h2 class="title"><a id="chapter-xml-configuration"/>Chapter 7. Configuring via XML</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch07.html#section-configuration-validation-xml">7.1. Configuring the validator factory in <span class="emphasis"><em>validation.xml</em></span></a></span></dt><dt><span class="section"><a href="ch07.html#section-mapping-xml-constraints">7.2. Mapping constraints via <code class="literal">constraint-mappings</code></a></span></dt></dl></div><p>So far we have used the default configuration source for Bean Validation, namely annotations.
+However, there also exist two kinds of XML descriptors allowing configuration via XML. The first
+descriptor describes general Bean Validation behaviour and is provided as <span class="emphasis"><em>META-INF/validation.xml</em></span>.
+The second one describes constraint declarations and closely matches the constraint declaration
+approach via annotations. Let’s have a look at these two document types.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Note</h2><p>The XSD files are available via
+<a class="link" href="http://www.jboss.org/xml/ns/javax/validation/configuration/">http://www.jboss.org/xml/ns/javax/validation/configuration</a> and
+<a class="link" href="http://www.jboss.org/xml/ns/javax/validation/mapping">http://www.jboss.org/xml/ns/javax/validation/mapping</a>.</p></div><div class="section" title="7.1. Configuring the validator factory in validation.xml"><div class="titlepage"><div><div><h2 class="title"><a id="section-configuration-validation-xml"/>7.1. Configuring the validator factory in <span class="emphasis"><em>validation.xml</em></span></h2></div></div></div><p>The key to enable XML configuration for Hibernate Validator is the file <span class="emphasis"><em>META-INF/validation.xml</em></span>.
+If this file exists on the classpath its configuration will be applied when the <code class="literal">ValidatorFactory</code>
+gets created. <a class="xref" href="ch07.html#image-validation-configuration" title="Figure 7.1. Validation configuration schema">Figure 7.1, “Validation configuration schema”</a> shows a model view of the XML schema to which
+<span class="emphasis"><em>validation.xml</em></span> has to adhere.</p><div class="figure"><a id="image-validation-configuration"/><p class="title"><strong>Figure 7.1. Validation configuration schema</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/validation-configuration-1.1.png" alt="validation-configuration-1.1.xsd"/></div></div></div><br class="figure-break"/><p><a class="xref" href="ch07.html#example-validation-xml" title="Example 7.1. validation.xml">Example 7.1, “<code class="literal">validation.xml</code>”</a>
+shows the several configuration options of <span class="emphasis"><em>validation.xml</em></span>. All settings are optional and the same
+configuration options are also available programmatically through <code class="literal">javax.validation.Configuration</code>. In
+fact the XML configuration will be overridden by values explicitly specified via the programmatic
+API. It is even possible to ignore the XML configuration completely via
+<code class="literal">Configuration#ignoreXmlConfiguration()</code>. See also <a class="xref" href="ch08.html#section-configuring-validator-factory" title="8.2. Configuring a ValidatorFactory">Section 8.2, “Configuring a <code class="literal">ValidatorFactory</code>”</a>.</p><div class="example"><a id="example-validation-xml"/><p class="title"><strong>Example 7.1. <code class="literal">validation.xml</code></strong></p><div class="example-contents"><pre><code class="language-xml">&lt;validation-config
+    xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration"&gt;
+
+    &lt;default-provider&gt;com.acme.ValidationProvider&lt;/default-provider&gt;
+
+    &lt;message-interpolator&gt;com.acme.MessageInterpolator&lt;/message-interpolator&gt;
+    &lt;traversable-resolver&gt;com.acme.TraversableResolver&lt;/traversable-resolver&gt;
+    &lt;constraint-validator-factory&gt;
+        com.acme.ConstraintValidatorFactory
+    &lt;/constraint-validator-factory&gt;
+    &lt;parameter-name-provider&gt;com.acme.ParameterNameProvider&lt;/parameter-name-provider&gt;
+
+    &lt;executable-validation enabled="true"&gt;
+        &lt;default-validated-executable-types&gt;
+            &lt;executable-type&gt;CONSTRUCTORS&lt;/executable-type&gt;
+            &lt;executable-type&gt;NON_GETTER_METHODS&lt;/executable-type&gt;
+            &lt;executable-type&gt;GETTER_METHODS&lt;/executable-type&gt;
+        &lt;/default-validated-executable-types&gt;
+    &lt;/executable-validation&gt;
+
+    &lt;constraint-mapping&gt;META-INF/validation/constraints-car.xml&lt;/constraint-mapping&gt;
+
+    &lt;property name="hibernate.validator.fail_fast"&gt;false&lt;/property&gt;
+&lt;/validation-config&gt;</code></pre></div></div><br class="example-break"/><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Warning</h2><p>There must only be one file named <span class="emphasis"><em>META-INF/validation.xml</em></span> on the classpath. If more than one is
+found an exception is thrown.</p></div><p>The node <code class="literal">default-provider</code> allows to choose the Bean Validation provider. This is useful if there is
+more than one provider on the classpath. <code class="literal">message-interpolator</code>, <code class="literal">traversable-resolver</code>,
+<code class="literal">constraint-validator-factory</code> and <code class="literal">parameter-name-provider</code> allow to customize the used
+implementations for the interfaces <code class="literal">MessageInterpolator</code>, <code class="literal">TraversableResolver</code>,
+<code class="literal">ConstraintValidatorFactory</code> and <code class="literal">ParameterNameProvider</code> defined in the <code class="literal">javax.validation</code> package.
+See the sub-sections of <a class="xref" href="ch08.html#section-configuring-validator-factory" title="8.2. Configuring a ValidatorFactory">Section 8.2, “Configuring a <code class="literal">ValidatorFactory</code>”</a> for more information about these
+interfaces.</p><p><code class="literal">executable-validation</code> and its subnodes define defaults for method validation. The Bean Validation
+specification defines constructor and non getter methods as defaults. The enabled attribute acts as
+global switch to turn method validation on and off (see also <a class="xref" href="ch03.html" title="Chapter 3. Declaring and validating method constraints">Chapter 3, <em>Declaring and validating method constraints</em></a>).</p><p>Via the <code class="literal">constraint-mapping</code> element you can list an arbitrary number of additional XML files
+containing the actual constraint configuration. Mapping file names must be specified using their
+fully-qualified name on the classpath. Details on writing mapping files can be found in the next
+section.</p><p>Last but not least, you can specify provider specific properties via the <code class="literal">property</code> nodes. In the
+example we are using the Hibernate Validator specific <code class="literal">hibernate.validator.fail_fast</code> property (see
+<a class="xref" href="ch11.html#section-fail-fast" title="11.2. Fail fast mode">Section 11.2, “Fail fast mode”</a>).</p></div><div class="section" title="7.2. Mapping constraints via constraint-mappings"><div class="titlepage"><div><div><h2 class="title"><a id="section-mapping-xml-constraints"/>7.2. Mapping constraints via <code class="literal">constraint-mappings</code></h2></div></div></div><p>Expressing constraints in XML is possible via files adhering to the schema seen in
+<a class="xref" href="ch07.html#image-mapping-configuration" title="Figure 7.2. Validation mapping schema">Figure 7.2, “Validation mapping schema”</a>. Note that these mapping files are only processed if listed via
+constraint-mapping in <span class="emphasis"><em>validation.xml</em></span>.</p><div class="figure"><a id="image-mapping-configuration"/><p class="title"><strong>Figure 7.2. Validation mapping schema</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/validation-mapping-1.1.png" alt="validation-mapping-1.1.xsd"/></div></div></div><br class="figure-break"/><p><a class="xref" href="ch07.html#example-constraints-car" title="Example 7.2. Bean constraints configured via XML">Example 7.2, “Bean constraints configured via XML”</a> shows how the classes Car and RentalCar from <a class="xref" href="ch05.html#example-car" title="Example 5.3. Car">Example 5.3, “Car”</a> resp.
+<a class="xref" href="ch05.html#example-rental-car" title="Example 5.7. Class RentalCar with redefined default group">Example 5.7, “Class <code class="literal">RentalCar</code> with redefined default group”</a> could be mapped in XML.</p><div class="example"><a id="example-constraints-car"/><p class="title"><strong>Example 7.2. Bean constraints configured via XML</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;constraint-mappings
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd"
+    xmlns="http://jboss.org/xml/ns/javax/validation/mapping" version="1.1"&gt;
+
+    &lt;default-package&gt;org.hibernate.validator.referenceguide.chapter05&lt;/default-package&gt;
+    &lt;bean class="Car" ignore-annotations="true"&gt;
+        &lt;field name="manufacturer"&gt;
+            &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+        &lt;/field&gt;
+        &lt;field name="licensePlate"&gt;
+            &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+        &lt;/field&gt;
+        &lt;field name="seatCount"&gt;
+            &lt;constraint annotation="javax.validation.constraints.Min"&gt;
+                &lt;element name="value"&gt;2&lt;/element&gt;
+            &lt;/constraint&gt;
+        &lt;/field&gt;
+        &lt;field name="driver"&gt;
+            &lt;valid/&gt;
+        &lt;/field&gt;
+        &lt;getter name="passedVehicleInspection" ignore-annotations="true"&gt;
+            &lt;constraint annotation="javax.validation.constraints.AssertTrue"&gt;
+                &lt;message&gt;The car has to pass the vehicle inspection first&lt;/message&gt;
+                &lt;groups&gt;
+                    &lt;value&gt;CarChecks&lt;/value&gt;
+                &lt;/groups&gt;
+                &lt;element name="max"&gt;10&lt;/element&gt;
+            &lt;/constraint&gt;
+        &lt;/getter&gt;
+    &lt;/bean&gt;
+    &lt;bean class="RentalCar" ignore-annotations="true"&gt;
+        &lt;class ignore-annotations="true"&gt;
+            &lt;group-sequence&gt;
+                &lt;value&gt;RentalCar&lt;/value&gt;
+                &lt;value&gt;CarChecks&lt;/value&gt;
+            &lt;/group-sequence&gt;
+        &lt;/class&gt;
+    &lt;/bean&gt;
+    &lt;constraint-definition annotation="org.mycompany.CheckCase"&gt;
+        &lt;validated-by include-existing-validators="false"&gt;
+            &lt;value&gt;org.mycompany.CheckCaseValidator&lt;/value&gt;
+        &lt;/validated-by&gt;
+    &lt;/constraint-definition&gt;
+&lt;/constraint-mappings&gt;</code></pre></div></div><br class="example-break"/><p><a class="xref" href="ch07.html#example-rental-station-xml" title="Example 7.3. Method constraints configured via XML">Example 7.3, “Method constraints configured via XML”</a> shows how the constraints from
+<a class="xref" href="ch03.html#example-declaring-parameter-constraints" title="Example 3.1. Declaring method and constructor parameter constraints">Example 3.1, “Declaring method and constructor parameter constraints”</a>, <a class="xref" href="ch03.html#example-declaring-return-value-constraints" title="Example 3.4. Declaring method and constructor return value constraints">Example 3.4, “Declaring method and constructor return value constraints”</a>
+and <a class="xref" href="ch03.html#example-specifying-constraint-target" title="Example 3.3. Specifying a constraint’s target">Example 3.3, “Specifying a constraint’s target”</a> can be expressed in XML.</p><div class="example"><a id="example-rental-station-xml"/><p class="title"><strong>Example 7.3. Method constraints configured via XML</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;constraint-mappings
+        xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd" version="1.1"&gt;
+
+    &lt;default-package&gt;org.hibernate.validator.referenceguide.chapter07&lt;/default-package&gt;
+
+    &lt;bean class="RentalStation" ignore-annotations="true"&gt;
+        &lt;constructor&gt;
+            &lt;return-value&gt;
+                &lt;constraint annotation="ValidRentalStation"/&gt;
+            &lt;/return-value&gt;
+        &lt;/constructor&gt;
+
+        &lt;constructor&gt;
+            &lt;parameter type="java.lang.String"&gt;
+                &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+            &lt;/parameter&gt;
+        &lt;/constructor&gt;
+
+        &lt;method name="getCustomers"&gt;
+            &lt;return-value&gt;
+                &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+                &lt;constraint annotation="javax.validation.constraints.Size"&gt;
+                    &lt;element name="min"&gt;1&lt;/element&gt;
+                &lt;/constraint&gt;
+            &lt;/return-value&gt;
+        &lt;/method&gt;
+
+        &lt;method name="rentCar"&gt;
+            &lt;parameter type="Customer"&gt;
+                &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+            &lt;/parameter&gt;
+            &lt;parameter type="java.util.Date"&gt;
+                &lt;constraint annotation="javax.validation.constraints.NotNull"/&gt;
+                &lt;constraint annotation="javax.validation.constraints.Future"/&gt;
+            &lt;/parameter&gt;
+            &lt;parameter type="int"&gt;
+                &lt;constraint annotation="javax.validation.constraints.Min"&gt;
+                    &lt;element name="value"&gt;1&lt;/element&gt;
+                &lt;/constraint&gt;
+            &lt;/parameter&gt;
+        &lt;/method&gt;
+    &lt;/bean&gt;
+
+    &lt;bean class="Garage" ignore-annotations="true"&gt;
+        &lt;method name="buildCar"&gt;
+            &lt;parameter type="java.util.List"/&gt;
+            &lt;cross-parameter&gt;
+                &lt;constraint annotation="ELAssert"&gt;
+                    &lt;element name="expression"&gt;...&lt;/element&gt;
+                    &lt;element name="validationAppliesTo"&gt;PARAMETERS&lt;/element&gt;
+                &lt;/constraint&gt;
+            &lt;/cross-parameter&gt;
+        &lt;/method&gt;
+        &lt;method name="paintCar"&gt;
+            &lt;parameter type="int"/&gt;
+            &lt;return-value&gt;
+                &lt;constraint annotation="ELAssert"&gt;
+                    &lt;element name="expression"&gt;...&lt;/element&gt;
+                    &lt;element name="validationAppliesTo"&gt;RETURN_VALUE&lt;/element&gt;
+                &lt;/constraint&gt;
+            &lt;/return-value&gt;
+        &lt;/method&gt;
+    &lt;/bean&gt;
+
+&lt;/constraint-mappings&gt;</code></pre></div></div><br class="example-break"/><p>The XML configuration is closely mirroring the programmatic API. For this reason it should suffice
+to just add some comments. <code class="literal">default-package</code> is used for all fields where a class name is expected. If
+the specified class is not fully qualified the configured default package will be used. Every
+mapping file can then have several bean nodes, each describing the constraints on the entity with
+the specified class name.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Warning</h2><p>A given class can only be configured once across all configuration files. The same applies for
+constraint definitions for a given constraint annotation. It can only occur in one mapping file. If
+these rules are violated a <code class="literal">ValidationException</code> is thrown.</p></div><p>Setting <code class="literal">ignore-annotations</code> to <code class="literal">true</code> means that constraint annotations placed on the configured bean
+are ignored. The default for this value is true. <code class="literal">ignore-annotations</code> is also available for the nodes
+<code class="literal">class</code>, <code class="literal">fields</code>, <code class="literal">getter</code>, <code class="literal">constructor</code>, <code class="literal">method</code>, <code class="literal">parameter</code>, <code class="literal">cross-parameter</code> and <code class="literal">return-value</code>.
+If not explicitly specified on these levels the configured bean value applies.</p><p>The nodes <code class="literal">class</code>, <code class="literal">field</code>, <code class="literal">getter</code>, <code class="literal">constructor</code> and <code class="literal">method</code> (and its sub node parameter) determine on
+which level the constraint gets placed. The <code class="literal">constraint</code> node is then used to add a constraint on the
+corresponding level. Each constraint definition must define the class via the <code class="literal">annotation</code> attribute.
+The constraint attributes required by the Bean Validation specification (<code class="literal">message</code>, <code class="literal">groups</code> and
+<code class="literal">payload</code>) have dedicated nodes. All other constraint specific attributes are configured using the
+<code class="literal">element</code> node.</p><p>The <code class="literal">class</code> node also allows to reconfigure the default group sequence (see
+<a class="xref" href="ch05.html#section-default-group-class" title="5.3. Redefining the default group sequence">Section 5.3, “Redefining the default group sequence”</a>) via the <code class="literal">group-sequence</code> node. Not shown in the example is the use
+of <code class="literal">convert-group</code> to
+specify group conversions (see <a class="xref" href="ch05.html#section-group-conversion" title="5.4. Group conversion">Section 5.4, “Group conversion”</a>). This node is available on <code class="literal">field</code>,
+<code class="literal">getter</code>, <code class="literal">parameter</code> and <code class="literal">return-value</code> and specifies a from and to attribute to specify the groups.</p><p>Last but not least, the list of <code class="literal">ConstraintValidator</code> instances associated to a given constraint
+can be altered via the <code class="literal">constraint-definition</code> node. The annotation attribute represents the constraint
+annotation being altered. The <code class="literal">validated-by</code> element represent the (ordered) list of <code class="literal">ConstraintValidator</code>
+implementations associated to the constraint. If <code class="literal">include-existing-validator</code> is set to <code class="literal">false</code>,
+validators defined on the constraint annotation are ignored. If set to <code class="literal">true</code>, the list of constraint
+validators described in XML is concatenated to the list of validators specified on the annotation.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>One use case for constraint-definition is to change the default constraint definition for <code class="literal">@URL</code>.
+Historically, Hibernate Validator’s default constraint validator for this constraint uses the
+<code class="literal">java.net.URL</code> constructor to verify that an URL is valid.
+However, there is also a purely regular expression based version available which can be configured using
+XML:</p><p title="Using XML to register a regular expression based constraint definition for @URL"><strong>Using XML to register a regular expression based constraint definition for <code class="literal">@URL</code>. </strong>
+</p><pre><code class="language-xml">&lt;constraint-definition annotation="org.hibernate.validator.constraints.URL"&gt;
+  &lt;validated-by include-existing-validators="false"&gt;
+    &lt;value&gt;org.hibernate.validator.constraintvalidators.RegexpURLValidator&lt;/value&gt;
+  &lt;/validated-by&gt;
+&lt;/constraint-definition&gt;</code></pre><p title="Using XML to register a regular expression based constraint definition for @URL">
+</p></div></div></div><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript" src="highlight.js/highlight.pack.js"> </script><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+dataLayer = [{'channel' : 'Hibernate', 'additional_tracking_code' : 'UA-45270411-3'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0" style="display:none;visibility:hidden"> </iframe></noscript><hr xmlns="" xmlns:d="http://docbook.org/ns/docbook"/><a xmlns="" xmlns:d="http://docbook.org/ns/docbook" href="legalnotice.html"/><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06.html"><strong>Prev</strong>Chapter 6. Creating custom constraints</a></li><li class="up"><a accesskey="u" href="#"><strong>Up</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Home</strong></a></li><li class="next"><a accesskey="n" href="ch08.html"><strong>Next</strong>Chapter 8. Bootstrapping</a></li></ul></body></html>

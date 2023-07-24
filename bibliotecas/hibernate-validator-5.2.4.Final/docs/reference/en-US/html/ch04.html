@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 4. Interpolating constraint error messages</title><link rel="stylesheet" type="text/css" href="css/hibernate.css"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><link rel="home" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="up" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="prev" href="ch03.html" title="Chapter 3. Declaring and validating method constraints"/><link rel="next" href="ch05.html" title="Chapter 5. Grouping constraints"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head><body><p id="title"><a href="http://www.hibernate.org" class="site_href"><strong>Hibernate.org</strong></a><a href="http://hibernate.org/Documentation/DocumentationOverview" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch03.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch05.html"><strong>Next</strong></a></li></ul><div class="chapter" title="Chapter 4. Interpolating constraint error messages"><div class="titlepage"><div><div><h2 class="title"><a id="chapter-message-interpolation"/>Chapter 4. Interpolating constraint error messages</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch04.html#section-message-interpolation">4.1. Default message interpolation</a></span></dt><dd><dl><dt><span class="section"><a href="ch04.html#section-special-characters">4.1.1. Special characters</a></span></dt><dt><span class="section"><a href="ch04.html#section-interpolation-with-message-expressions">4.1.2. Interpolation with message expressions</a></span></dt><dt><span class="section"><a href="ch04.html#_examples">4.1.3. Examples</a></span></dt></dl></dd><dt><span class="section"><a href="ch04.html#section-custom-message-interpolation">4.2. Custom message interpolation</a></span></dt><dd><dl><dt><span class="section"><a href="ch04.html#section-resource-bundle-locator">4.2.1. <code class="literal">ResourceBundleLocator</code></a></span></dt></dl></dd></dl></div><p>Message interpolation is the process of creating error messages for violated Bean Validation
+constraints. In this chapter you will learn how such messages are defined and resolved and how you
+can plug in custom message interpolators in case the default algorithm is not sufficient for your
+requirements.</p><div class="section" title="4.1. Default message interpolation"><div class="titlepage"><div><div><h2 class="title"><a id="section-message-interpolation"/>4.1. Default message interpolation</h2></div></div></div><p>Constraint violation messages are retrieved from so called message descriptors. Each constraint
+defines its default message descriptor using the message attribute. At declaration time, the default
+descriptor can be overridden with a specific value as shown in <a class="xref" href="ch04.html#example-overriding-message" title="Example 4.1. Specifying a message descriptor using the message attribute">Example 4.1, “Specifying a message descriptor using the message attribute”</a>.</p><div class="example"><a id="example-overriding-message"/><p class="title"><strong>Example 4.1. Specifying a message descriptor using the message attribute</strong></p><div class="example-contents"><pre><code class="language-java">package org.hibernate.validator.referenceguide.chapter04;
+
+public class Car {
+
+	@NotNull(message = "The manufacturer name must not be null")
+	private String manufacturer;
+
+	//constructor, getters and setters ...
+}</code></pre></div></div><br class="example-break"/><p>If a constraint is violated, its descriptor will be interpolated by the validation engine using the
+currently configured <code class="literal">MessageInterpolator</code>. The interpolated error message can then be retrieved from
+the resulting constraint violation by calling <code class="literal">ConstraintViolation#getMessage()</code>.</p><p>Message descriptors can contain <span class="emphasis"><em>message parameters</em></span> as well as <span class="emphasis"><em>message expressions</em></span> which will be
+resolved during interpolation. Message parameters are string literals enclosed in <code class="literal">{}</code>, while
+message expressions are string literals enclosed in <code class="literal">${}</code>. The following algorithm is applied during
+method interpolation:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">Resolve any message parameters by using them as key for the resource bundle <span class="emphasis"><em>ValidationMessages</em></span>. If
+this bundle contains an entry for a given message parameter, that parameter will be replaced in the
+message with the corresponding value from the bundle. This step will be executed recursively in case
+the replaced value again contains message parameters. The resource bundle is expected to be provided
+by the application developer, e.g. by adding a file named <span class="emphasis"><em>ValidationMessages.properties</em></span> to the
+classpath. You can also create localized error messages by providing locale specific variations of
+this bundle, such as <span class="emphasis"><em>ValidationMessages_en_US.properties</em></span>. By default, the JVM’s default locale
+(<code class="literal">Locale#getDefault()</code>) will be used when looking up messages in the bundle.</li><li class="listitem">Resolve any message parameters by using them as key for a resource bundle containing the standard
+error messages for the built-in constraints as defined in Appendix B of the Bean Validation
+specification. In the case of Hibernate Validator, this bundle is named
+<code class="literal">org.hibernate.validator.ValidationMessages</code>. If this step triggers a replacement, step 1 is executed
+again, otherwise step 3 is applied.</li><li class="listitem">Resolve any message parameters by replacing them with the value of the constraint annotation member
+of the same name. This allows to refer to attribute values of the constraint (e.g. <code class="literal">Size#min()</code>) in
+the error message (e.g. "must be at least ${min}").</li><li class="listitem">Resolve any message expressions by evaluating them as expressions of the Unified Expression
+Language. See <a class="xref" href="ch04.html#section-interpolation-with-message-expressions" title="4.1.2. Interpolation with message expressions">Section 4.1.2, “Interpolation with message expressions”</a> to learn more about the usage of
+Unified EL in error messages.</li></ol></div><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>You can find the formal definition of the interpolation algorithm in section
+<a class="link" href="http://beanvalidation.org/1.1/spec/#default-resolution-algorithm">5.3.1.1</a> of the Bean
+Validation specification.</p></div><div class="section" title="4.1.1. Special characters"><div class="titlepage"><div><div><h3 class="title"><a id="section-special-characters"/>4.1.1. Special characters</h3></div></div></div><p>Since the characters <code class="literal">{</code>, <code class="literal">}</code> and <code class="literal">$</code> have a special meaning in message descriptors they need to be escaped if you want to use them literally. The following rules apply:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><code class="literal">\{</code> is considered as the literal <code class="literal">{</code></li><li class="listitem"><code class="literal">\}</code> is considered as the literal <code class="literal">}</code></li><li class="listitem"><code class="literal">\$</code> is considered as the literal <code class="literal">$</code></li><li class="listitem"><code class="literal">\\</code> is considered as the literal <code class="literal">\</code></li></ul></div></div><div class="section" title="4.1.2. Interpolation with message expressions"><div class="titlepage"><div><div><h3 class="title"><a id="section-interpolation-with-message-expressions"/>4.1.2. Interpolation with message expressions</h3></div></div></div><p>As of Hibernate Validator 5 (Bean Validation 1.1) it is possible to use the Unified Expression
+Language (as defined by <a class="link" href="http://jcp.org/en/jsr/detail?id=341">JSR 341</a>) in constraint
+violation messages. This allows to define error messages based on conditional logic and also enables
+advanced formatting options. The validation engine makes the following objects available in the EL
+context:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">the attribute values of the constraint mapped to the attribute names</li><li class="listitem">the currently validated value (property, bean, method parameter etc.) under the name <span class="emphasis"><em>validatedValue</em></span></li><li class="listitem">a bean mapped to the name formatter exposing the var-arg method
+<code class="literal">format(String format, Object…​ args)</code> which behaves like
+<code class="literal">java.util.Formatter.format(String format, Object…​ args)</code>.</li></ul></div><p>The following section provides several examples for using EL expressions in error messages.</p></div><div class="section" title="4.1.3. Examples"><div class="titlepage"><div><div><h3 class="title"><a id="_examples"/>4.1.3. Examples</h3></div></div></div><p><a class="xref" href="ch04.html#example-message-descriptors" title="Example 4.2. Specifying message descriptors">Example 4.2, “Specifying message descriptors”</a> shows how to make use of the different options for specifying
+message descriptors.</p><div class="example"><a id="example-message-descriptors"/><p class="title"><strong>Example 4.2. Specifying message descriptors</strong></p><div class="example-contents"><pre><code class="language-java">package org.hibernate.validator.referenceguide.chapter04.complete;
+
+public class Car {
+
+	@NotNull
+	private String manufacturer;
+
+	@Size(min = 2,
+		max = 14,
+		message = "The license plate '${validatedValue}' must be between {min} and {max} characters long"
+	)
+	private String licensePlate;
+
+	@Min(value = 2,
+		message = "There must be at least {value} seat${value &gt; 1 ? 's' : ''}"
+	)
+	private int seatCount;
+
+	@DecimalMax(value = "350",
+			message = "The top speed ${formatter.format('%1$.2f', validatedValue)} is higher " +
+					"than {value}"
+	)
+	private double topSpeed;
+
+	@DecimalMax(value = "100000", message = "Price must not be higher than ${value}")
+	private BigDecimal price;
+
+	public Car(
+			String manufacturer,
+			String licensePlate,
+			int seatCount,
+			double topSpeed,
+			BigDecimal price) {
+		this.manufacturer = manufacturer;
+		this.licensePlate = licensePlate;
+		this.seatCount = seatCount;
+		this.topSpeed = topSpeed;
+		this.price = price;
+	}
+
+	//getters and setters ...
+}</code></pre></div></div><br class="example-break"/><p>Validating an invalid <code class="literal">Car</code> instance yields constraint violations with the messages shown by the
+assertions in <a class="xref" href="ch04.html#example-expected-error-messages" title="Example 4.3. Expected error messages">Example 4.3, “Expected error messages”</a>:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">the <code class="literal">@NotNull</code> constraint on the <code class="literal">manufacturer</code> field causes the error message "may not be null", as
+this is the default message defined by the Bean Validation specification and no specific descriptor
+is given in the message attribute</li><li class="listitem">the <code class="literal">@Size</code> constraint on the <code class="literal">licensePlate</code> field shows the interpolation of message parameters
+(<code class="literal">{min}</code>, <code class="literal">{max}</code>) and how to add the validated value to the error message using the EL
+expression <code class="literal">${validatedValue}</code></li><li class="listitem">the <code class="literal">@Min</code> constraint on <code class="literal">seatCount</code> demonstrates how use an EL expression with a ternery expression to
+dynamically chose singular or plural form, depending on an attribute of the constraint ("There must
+be at least 1 seat" vs. "There must be at least 2 seats")</li><li class="listitem">the message for the <code class="literal">@DecimalMax</code> constraint on <code class="literal">topSpeed</code> shows how to format the validated
+value using the formatter instance</li><li class="listitem">finally, the <code class="literal">@DecimalMax</code> constraint on price shows that parameter interpolation has precedence over
+expression evaluation, causing the <code class="literal">$</code> sign to show up in front of the maximum price</li></ul></div><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>Only actual constraint attributes can be interpolated using message parameters in the form
+<code class="literal">{attributeName}</code>. When referring to the validated value or custom expression variables added to the
+interpolation context (see <a class="xref" href="ch11.html#section-hibernateconstraintvalidatorcontext" title="11.9.1. HibernateConstraintValidatorContext">Section 11.9.1, “<code class="literal">HibernateConstraintValidatorContext</code>”</a>), an EL expression in the
+form <code class="literal">${attributeName}</code> must be used.</p></div><div class="example"><a id="example-expected-error-messages"/><p class="title"><strong>Example 4.3. Expected error messages</strong></p><div class="example-contents"><pre><code class="language-java">Car car = new Car( null, "A", 1, 400.123456, BigDecimal.valueOf( 200000 ) );
+
+String message = validator.validateProperty( car, "manufacturer" )
+		.iterator()
+		.next()
+		.getMessage();
+assertEquals( "may not be null", message );
+
+message = validator.validateProperty( car, "licensePlate" )
+		.iterator()
+		.next()
+		.getMessage();
+assertEquals(
+		"The license plate must be between 2 and 14 characters long",
+		message
+);
+
+message = validator.validateProperty( car, "seatCount" ).iterator().next().getMessage();
+assertEquals( "There must be at least 2 seats", message );
+
+message = validator.validateProperty( car, "topSpeed" ).iterator().next().getMessage();
+assertEquals( "The top speed 400.12 is higher than 350", message );
+
+message = validator.validateProperty( car, "price" ).iterator().next().getMessage();
+assertEquals( "Price must not be higher than $100000", message );</code></pre></div></div><br class="example-break"/></div></div><div class="section" title="4.2. Custom message interpolation"><div class="titlepage"><div><div><h2 class="title"><a id="section-custom-message-interpolation"/>4.2. Custom message interpolation</h2></div></div></div><p>If the default message interpolation algorithm does not fit your requirements it is also possible to
+plug in a custom <code class="literal">MessageInterpolator</code> implementation.</p><p>Custom interpolators must implement the interface <code class="literal">javax.validation.MessageInterpolator</code>. Note that
+implementations must be thread-safe. It is recommended that custom message interpolators delegate
+final implementation to the default interpolator, which can be obtained via
+<code class="literal">Configuration#getDefaultMessageInterpolator()</code>.</p><p>In order to use a custom message interpolator it must be registered either by configuring it in the
+Bean Validation XML descriptor <span class="emphasis"><em>META-INF/validation.xml</em></span> (see
+<a class="xref" href="ch07.html#section-configuration-validation-xml" title="7.1. Configuring the validator factory in validation.xml">Section 7.1, “Configuring the validator factory in <span class="emphasis"><em>validation.xml</em></span>”</a>) or by passing it when bootstrapping a <code class="literal">ValidatorFactory</code> or
+<code class="literal">Validator</code> (see <a class="xref" href="ch08.html#section-validator-factory-message-interpolator" title="8.2.1. MessageInterpolator">Section 8.2.1, “<code class="literal">MessageInterpolator</code>”</a> and
+<a class="xref" href="ch08.html#section-configuring-validator" title="8.3. Configuring a Validator">Section 8.3, “Configuring a Validator”</a>, respectively).</p><div class="section" title="4.2.1. ResourceBundleLocator"><div class="titlepage"><div><div><h3 class="title"><a id="section-resource-bundle-locator"/>4.2.1. <code class="literal">ResourceBundleLocator</code></h3></div></div></div><p>In some use cases you want to use the message interpolation algorithm as defined by the Bean
+Validation specification, but retrieve error messages from other resource bundles than
+<span class="emphasis"><em>ValidationMessages</em></span>. In this situation Hibernate Validator’s <code class="literal">ResourceBundleLocator</code> SPI can help.</p><p>The default message interpolator in Hibernate Validator, <code class="literal">ResourceBundleMessageInterpolator</code>,
+delegates retrieval of resource bundles to that SPI. Using an alternative bundle only requires
+passing an instance of <code class="literal">PlatformResourceBundleLocator</code> with the bundle name when bootstrapping the
+<code class="literal">ValidatorFactory</code> as shown in <a class="xref" href="ch04.html#example-using-specific-resource-bundle-locator" title="Example 4.4. Using a specific resource bundle">Example 4.4, “Using a specific resource bundle”</a>.</p><div class="example"><a id="example-using-specific-resource-bundle-locator"/><p class="title"><strong>Example 4.4. Using a specific resource bundle</strong></p><div class="example-contents"><pre><code class="language-java">Validator validator = Validation.byDefaultProvider()
+		.configure()
+		.messageInterpolator(
+				new ResourceBundleMessageInterpolator(
+						new PlatformResourceBundleLocator( "MyMessages" )
+				)
+		)
+		.buildValidatorFactory()
+		.getValidator();</code></pre></div></div><br class="example-break"/><p>Of course you also could implement a completely different <code class="literal">ResourceBundleLocator</code>, which for instance
+returns bundles backed by records in a database. In this case you can obtain the default locator via
+<code class="literal">HibernateValidatorConfiguration#getDefaultResourceBundleLocator()</code>, which you e.g. could use as
+fall-back for your custom locator.</p><p>Besides <code class="literal">PlatformResourceBundleLocator</code>, Hibernate Validator provides another resource bundle locator
+implementation out of the box, namely <code class="literal">AggregateResourceBundleLocator</code>, which allows to retrieve error
+messages from more than one resource bundle. You could for instance use this implementation in a
+multi-module application where you want to have one message bundle per module.
+<a class="xref" href="ch04.html#example-using-aggregate-resource-bundle-locator" title="Example 4.5. Using AggregateResourceBundleLocator">Example 4.5, “Using <code class="literal">AggregateResourceBundleLocator</code>”</a> shows how to use <code class="literal">AggregateResourceBundleLocator</code>.</p><div class="example"><a id="example-using-aggregate-resource-bundle-locator"/><p class="title"><strong>Example 4.5. Using <code class="literal">AggregateResourceBundleLocator</code></strong></p><div class="example-contents"><pre><code class="language-java">Validator validator = Validation.byDefaultProvider()
+		.configure()
+		.messageInterpolator(
+				new ResourceBundleMessageInterpolator(
+						new AggregateResourceBundleLocator(
+								Arrays.asList(
+										"MyMessages",
+										"MyOtherMessages"
+								)
+						)
+				)
+		)
+		.buildValidatorFactory()
+		.getValidator();</code></pre></div></div><br class="example-break"/><p>Note that the bundles are processed in the order as passed to the constructor. That means if several
+bundles contain an entry for a given message key, the value will be taken from the first bundle in
+the list containing the key.</p></div></div></div><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript" src="highlight.js/highlight.pack.js"> </script><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+dataLayer = [{'channel' : 'Hibernate', 'additional_tracking_code' : 'UA-45270411-3'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0" style="display:none;visibility:hidden"> </iframe></noscript><hr xmlns="" xmlns:d="http://docbook.org/ns/docbook"/><a xmlns="" xmlns:d="http://docbook.org/ns/docbook" href="legalnotice.html"/><ul class="docnav"><li class="previous"><a accesskey="p" href="ch03.html"><strong>Prev</strong>Chapter 3. Declaring and validating method constr...</a></li><li class="up"><a accesskey="u" href="#"><strong>Up</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Home</strong></a></li><li class="next"><a accesskey="n" href="ch05.html"><strong>Next</strong>Chapter 5. Grouping constraints</a></li></ul></body></html>

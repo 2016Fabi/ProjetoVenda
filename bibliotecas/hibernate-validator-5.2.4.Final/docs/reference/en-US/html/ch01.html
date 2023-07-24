@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 1. Getting started</title><link rel="stylesheet" type="text/css" href="css/hibernate.css"/><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><link rel="home" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="up" href="index.html" title="Hibernate Validator 5.2.4.Final"/><link rel="prev" href="pr01.html" title="Preface"/><link rel="next" href="ch02.html" title="Chapter 2. Declaring and validating bean constraints"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head><body><p id="title"><a href="http://www.hibernate.org" class="site_href"><strong>Hibernate.org</strong></a><a href="http://hibernate.org/Documentation/DocumentationOverview" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="pr01.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch02.html"><strong>Next</strong></a></li></ul><div class="chapter" title="Chapter 1. Getting started"><div class="titlepage"><div><div><h2 class="title"><a id="validator-gettingstarted"/>Chapter 1. Getting started</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch01.html#validator-gettingstarted-createproject">1.1. Project set up</a></span></dt><dd><dl><dt><span class="section"><a href="ch01.html#validator-gettingstarted-uel">1.1.1. Unified EL</a></span></dt><dt><span class="section"><a href="ch01.html#section-getting-started-cdi">1.1.2. CDI</a></span></dt><dt><span class="section"><a href="ch01.html#section-getting-started-security-manager">1.1.3. Running with a security manager</a></span></dt></dl></dd><dt><span class="section"><a href="ch01.html#validator-gettingstarted-createmodel">1.2. Applying constraints</a></span></dt><dt><span class="section"><a href="ch01.html#_validating_constraints">1.3. Validating constraints</a></span></dt><dt><span class="section"><a href="ch01.html#_java_8_support">1.4. Java 8 support</a></span></dt><dd><dl><dt><span class="section"><a href="ch01.html#_type_arguments_constraints">1.4.1. Type arguments constraints</a></span></dt><dt><span class="section"><a href="ch01.html#_actual_parameter_names">1.4.2. Actual parameter names</a></span></dt><dt><span class="section"><a href="ch01.html#_new_date_time_api">1.4.3. New date/time API</a></span></dt><dt><span class="section"><a href="ch01.html#_optional_type">1.4.4. Optional type</a></span></dt></dl></dd><dt><span class="section"><a href="ch01.html#validator-gettingstarted-whatsnext">1.5. Where to go next?</a></span></dt></dl></div><p>This chapter will show you how to get started with Hibernate Validator, the reference implementation (RI) of Bean Validation. For the following quick-start you need:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">A JDK &gt;= 6</li><li class="listitem"><a class="link" href="http://maven.apache.org/">Apache Maven</a></li><li class="listitem">An Internet connection (Maven has to download all required libraries)</li></ul></div><div class="section" title="1.1. Project set up"><div class="titlepage"><div><div><h2 class="title"><a id="validator-gettingstarted-createproject"/>1.1. Project set up</h2></div></div></div><p>In order to use Hibernate Validator within a Maven project, simply add the following dependency to
+your <span class="emphasis"><em>pom.xml</em></span>:</p><div class="example"><a id="d0e84"/><p class="title"><strong>Example 1.1. Hibernate Validator Maven dependency</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+    &lt;version&gt;5.2.4.Final&lt;/version&gt;
+&lt;/dependency&gt;</code></pre></div></div><br class="example-break"/><p>This transitively pulls in the dependency to the Bean Validation API
+(<code class="literal">javax.validation:validation-api:1.1.0.Final</code>).</p><div class="section" title="1.1.1. Unified EL"><div class="titlepage"><div><div><h3 class="title"><a id="validator-gettingstarted-uel"/>1.1.1. Unified EL</h3></div></div></div><p>Hibernate Validator requires an implementation of the Unified Expression Language
+(<a class="link" href="http://jcp.org/en/jsr/detail?id=341">JSR 341</a>) for evaluating dynamic expressions in constraint
+violation messages (see <a class="xref" href="ch04.html#section-message-interpolation" title="4.1. Default message interpolation">Section 4.1, “Default message interpolation”</a>). When your application runs in a Java EE
+container such as JBoss AS, an EL implementation is already provided by the container. In a Java SE
+environment, however, you have to add an implementation as dependency to your POM file. For instance
+you can add the following two dependencies to use the JSR 341 <a class="link" href="http://uel.java.net/">reference
+implementation</a>:</p><div class="example"><a id="d0e107"/><p class="title"><strong>Example 1.2. Maven dependencies for Unified EL reference implementation</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;javax.el&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.el-api&lt;/artifactId&gt;
+    &lt;version&gt;2.2.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.glassfish.web&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.el&lt;/artifactId&gt;
+    &lt;version&gt;2.2.4&lt;/version&gt;
+&lt;/dependency&gt;</code></pre></div></div><br class="example-break"/><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>For environments where one cannot provide a EL implementation Hibernate Validator is offering a
+<a class="xref" href="ch11.html#non-el-message-interpolator" title="11.7. ParameterMessageInterpolator">Section 11.7, “<code class="literal">ParameterMessageInterpolator</code>”</a>. However, the use of this interpolator
+is not Bean Validation specification compliant.</p></div></div><div class="section" title="1.1.2. CDI"><div class="titlepage"><div><div><h3 class="title"><a id="section-getting-started-cdi"/>1.1.2. CDI</h3></div></div></div><p>Bean Validation defines integration points with CDI (Contexts and Dependency Injection for Java <sup>TM</sup>
+EE, <a class="link" href="http://jcp.org/en/jsr/detail?id=346">JSR 346</a>). If your application runs in an
+environment which does not provide this integration out of the box, you may use the Hibernate
+Validator CDI portable extension by adding the following Maven dependency to your POM:</p><div class="example"><a id="d0e128"/><p class="title"><strong>Example 1.3. Hibernate Validator CDI portable extension Maven dependency</strong></p><div class="example-contents"><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-validator-cdi&lt;/artifactId&gt;
+    &lt;version&gt;5.2.4.Final&lt;/version&gt;
+&lt;/dependency&gt;</code></pre></div></div><br class="example-break"/><p>Note that adding this dependency is usually not required for applications running on a Java EE
+application server. You can learn more about the integration of Bean Validation and CDI in
+<a class="xref" href="ch10.html#section-integration-with-cdi" title="10.3. CDI">Section 10.3, “CDI”</a>.</p></div><div class="section" title="1.1.3. Running with a security manager"><div class="titlepage"><div><div><h3 class="title"><a id="section-getting-started-security-manager"/>1.1.3. Running with a security manager</h3></div></div></div><p>Hibernate Validator supports running with a <a class="link" href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/index.html">security manager</a> being enabled.
+To do so, you must assign several permissions to the Hibernate Validator and the Bean Validation API code bases.
+The following shows how to do this via a <a class="link" href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/PolicyFiles.html">policy file</a> as processed by the Java default policy implementation:</p><div class="example"><a id="d0e148"/><p class="title"><strong>Example 1.4. Policy file for using Hibernate Validator with a security manager</strong></p><div class="example-contents"><pre><code class="language-xml">grant codeBase "file:path/to/hibernate-validator-5.2.4.Final.jar" {
+    permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+    permission java.lang.RuntimePermission "accessDeclaredMembers";
+
+    // Only needed when working with XML descriptors (validation.xml or XML constraint mappings)
+    permission java.util.PropertyPermission "mapAnyUriToUri", "read";
+};
+
+grant codeBase "file:path/to/validation-api-1.1.0.Final.jar" {
+    permission java.io.FilePermission "path/to/hibernate-validator-5.2.4.Final.jar", "read";
+};</code></pre></div></div><br class="example-break"/><p>All API invocations requiring special permissions are done via privileged actions.
+This means only Hibernate Validator and the Bean Validation API themselves need the listed permissions.
+You don’t need to assign any permissions to other code bases calling Hibernate Validator.</p></div></div><div class="section" title="1.2. Applying constraints"><div class="titlepage"><div><div><h2 class="title"><a id="validator-gettingstarted-createmodel"/>1.2. Applying constraints</h2></div></div></div><p>Lets dive directly into an example to see how to apply constraints.</p><div class="example"><a id="example-class-car"/><p class="title"><strong>Example 1.5. Class Car annotated with constraints</strong></p><div class="example-contents"><pre><code class="language-java">package org.hibernate.validator.referenceguide.chapter01;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class Car {
+
+    @NotNull
+    private String manufacturer;
+
+    @NotNull
+    @Size(min = 2, max = 14)
+    private String licensePlate;
+
+    @Min(2)
+    private int seatCount;
+
+    public Car(String manufacturer, String licencePlate, int seatCount) {
+        this.manufacturer = manufacturer;
+        this.licensePlate = licencePlate;
+        this.seatCount = seatCount;
+    }
+
+    //getters and setters ...
+}</code></pre></div></div><br class="example-break"/><p>The <code class="literal">@NotNull</code>, <code class="literal">@Size</code> and <code class="literal">@Min</code> annotations are used to declare the constraints which should be applied
+to the fields of a Car instance:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><code class="literal">manufacturer</code> must never be <code class="literal">null</code></li><li class="listitem"><code class="literal">licensePlate</code> must never be <code class="literal">null</code> and must be between 2 and 14 characters long</li><li class="listitem"><code class="literal">seatCount</code> must be at least 2</li></ul></div><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h2>Tip</h2><p>You can find the complete source code of all examples used in this reference guide in the Hibernate
+Validator
+<a class="link" href="https://github.com/hibernate/hibernate-validator/tree/master/documentation/src/test">source repository</a>
+on GitHub.</p></div></div><div class="section" title="1.3. Validating constraints"><div class="titlepage"><div><div><h2 class="title"><a id="_validating_constraints"/>1.3. Validating constraints</h2></div></div></div><p>To perform a validation of these constraints, you use a <code class="literal">Validator</code> instance. Let’s have a look at a
+unit test for <code class="literal">Car</code>:</p><div class="example"><a id="d0e214"/><p class="title"><strong>Example 1.6. Class CarTest showing validation examples</strong></p><div class="example-contents"><pre><code class="language-java">package org.hibernate.validator.referenceguide.chapter01;
+
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class CarTest {
+
+    private static Validator validator;
+
+    @BeforeClass
+    public static void setUpValidator() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    @Test
+    public void manufacturerIsNull() {
+        Car car = new Car( null, "DD-AB-123", 4 );
+
+        Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations =
+                validator.validate( car );
+
+        assertEquals( 1, constraintViolations.size() );
+        assertEquals( "may not be null", constraintViolations.iterator().next().getMessage() );
+    }
+
+    @Test
+    public void licensePlateTooShort() {
+        Car car = new Car( "Morris", "D", 4 );
+
+        Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations =
+                validator.validate( car );
+
+        assertEquals( 1, constraintViolations.size() );
+        assertEquals(
+                "size must be between 2 and 14",
+                constraintViolations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void seatCountTooLow() {
+        Car car = new Car( "Morris", "DD-AB-123", 1 );
+
+        Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations =
+                validator.validate( car );
+
+        assertEquals( 1, constraintViolations.size() );
+        assertEquals(
+                "must be greater than or equal to 2",
+                constraintViolations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void carIsValid() {
+        Car car = new Car( "Morris", "DD-AB-123", 2 );
+
+        Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations =
+                validator.validate( car );
+
+        assertEquals( 0, constraintViolations.size() );
+    }
+}</code></pre></div></div><br class="example-break"/><p>In the <code class="literal">setUp()</code> method a <code class="literal">Validator</code> object is retrieved from the <code class="literal">ValidatorFactory</code>. A <code class="literal">Validator</code>
+instance is thread-safe and may be reused multiple times. It thus can safely be stored in a static
+field and be used in the test methods to validate the different <code class="literal">Car</code> instances.</p><p>The <code class="literal">validate()</code> method returns a set of <code class="literal">ConstraintViolation</code> instances, which you can iterate over in
+order to see which validation errors occurred. The first three test methods show some expected
+constraint violations:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem">The <code class="literal">@NotNull</code> constraint on <code class="literal">manufacturer</code> is violated in <code class="literal">manufacturerIsNull()</code></li><li class="listitem">The <code class="literal">@Size</code> constraint on <code class="literal">licensePlate</code> is violated in <code class="literal">licensePlateTooShort()</code></li><li class="listitem">The <code class="literal">@Min</code> constraint on <code class="literal">seatCount</code> is violated in <code class="literal">seatCountTooLow()</code></li></ul></div><p>If the object validates successfully, <code class="literal">validate()</code> returns an empty set as you can see in <code class="literal">carIsValid()</code>.</p><p>Note that only classes from the package <code class="literal">javax.validation</code> are used. These are provided from the Bean
+Validation API. No classes from Hibernate Validator are directly referenced, resulting in portable
+code.</p></div><div class="section" title="1.4. Java 8 support"><div class="titlepage"><div><div><h2 class="title"><a id="_java_8_support"/>1.4. Java 8 support</h2></div></div></div><p>Java 8 introduces several enhancements which are valuable from a Hibernate Validator point of view.
+This section briefly introduces the Hibernate Validator features based on Java 8.
+They are only available in Hibernate Validator 5.2 and later.</p><div class="section" title="1.4.1. Type arguments constraints"><div class="titlepage"><div><div><h3 class="title"><a id="_type_arguments_constraints"/>1.4.1. Type arguments constraints</h3></div></div></div><p>In Java 8 it is possible to use annotations in any location a type is used. This includes type
+arguments. Hibernate Validator supports the validation of constraints defined on type arguments
+of collections, maps, and custom parameterized types. The <a class="xref" href="ch02.html#type-arguments-constraints" title="2.1.3. Type argument constraints">Section 2.1.3, “Type argument constraints”</a> chapter
+provides further information on how to apply and use type argument constraints.</p></div><div class="section" title="1.4.2. Actual parameter names"><div class="titlepage"><div><div><h3 class="title"><a id="_actual_parameter_names"/>1.4.2. Actual parameter names</h3></div></div></div><p>The Java 8 Reflection API can now retrieve the actual parameter names of a method or constructor.
+Hibernate Validator uses this ability to report the actual parameter names instead of <code class="literal">arg0</code>,
+<code class="literal">arg1</code>, etc. The <a class="xref" href="ch08.html#section-parameter-name-provider" title="8.2.4. ParameterNameProvider">Section 8.2.4, “<code class="literal">ParameterNameProvider</code>”</a> chapter explains how to use the new reflection
+based parameter name provider.</p></div><div class="section" title="1.4.3. New date/time API"><div class="titlepage"><div><div><h3 class="title"><a id="_new_date_time_api"/>1.4.3. New date/time API</h3></div></div></div><p>Java 8 introduces a new date/time API. Hibernate Validator provides full support for the new API
+where <code class="literal">@Future</code> and <code class="literal">@Past</code> constraints can be applied on the new types. The table
+<a class="xref" href="ch02.html#table-spec-constraints" title="Table 2.2. Bean Validation constraints">Table 2.2, “Bean Validation constraints”</a> shows the types supported for <code class="literal">@Future</code> and <code class="literal">@Past</code>, including the types
+from the new API.</p></div><div class="section" title="1.4.4. Optional type"><div class="titlepage"><div><div><h3 class="title"><a id="_optional_type"/>1.4.4. Optional type</h3></div></div></div><p>Hibernate Validator provides also support for Java 8 <code class="literal">Optional</code> type, by unwrapping the <code class="literal">Optional</code>
+instance and validating the internal value. <a class="xref" href="ch11.html#section-optional-unwrapper" title="11.11.1. Optional unwrapper">Section 11.11.1, “Optional unwrapper”</a> provides examples and a
+further discussion.</p></div></div><div class="section" title="1.5. Where to go next?"><div class="titlepage"><div><div><h2 class="title"><a id="validator-gettingstarted-whatsnext"/>1.5. Where to go next?</h2></div></div></div><p>That concludes the 5 minute tour through the world of Hibernate Validator and Bean Validation.
+Continue exploring the code examples or look at further examples referenced in
+<a class="xref" href="ch13.html" title="Chapter 13. Further reading">Chapter 13, <em>Further reading</em></a>.</p><p>To learn more about the validation of beans and properties, just continue reading
+<a class="xref" href="ch02.html" title="Chapter 2. Declaring and validating bean constraints">Chapter 2, <em>Declaring and validating bean constraints</em></a>. If you are interested in using Bean Validation for the validation of
+method pre- and postcondition refer to <a class="xref" href="ch03.html" title="Chapter 3. Declaring and validating method constraints">Chapter 3, <em>Declaring and validating method constraints</em></a>. In case your application has
+specific validation requirements have a look at <a class="xref" href="ch06.html" title="Chapter 6. Creating custom constraints">Chapter 6, <em>Creating custom constraints</em></a>.</p></div></div><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript" src="highlight.js/highlight.pack.js"> </script><script xmlns="" xmlns:d="http://docbook.org/ns/docbook" type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+dataLayer = [{'channel' : 'Hibernate', 'additional_tracking_code' : 'UA-45270411-3'}];
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJWS5L');</script><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJWS5L" height="0" width="0" style="display:none;visibility:hidden"> </iframe></noscript><hr xmlns="" xmlns:d="http://docbook.org/ns/docbook"/><a xmlns="" xmlns:d="http://docbook.org/ns/docbook" href="legalnotice.html"/><ul class="docnav"><li class="previous"><a accesskey="p" href="pr01.html"><strong>Prev</strong>Preface</a></li><li class="up"><a accesskey="u" href="#"><strong>Up</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Home</strong></a></li><li class="next"><a accesskey="n" href="ch02.html"><strong>Next</strong>Chapter 2. Declaring and validating bean constrai...</a></li></ul></body></html>
