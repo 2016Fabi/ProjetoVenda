@@ -1,0 +1,15 @@
+127.0.0.1 - - [18/Aug/2023:19:36:45 -0300] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/templates/template.xhtml HTTP/1.1" 200 6786
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/estilos.css;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=css HTTP/1.1" 200 68
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/jquery/jquery.js;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 108195
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/theme.css?ln=primefaces-sunny HTTP/1.1" 200 18526
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/layout/layout.css;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 542
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/jquery/jquery-plugins.js;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 220756
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/primefaces.js;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 300675
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/layout/layout.js;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 87647
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/primefaces.css;jsessionid=F79B7FABD8074CAFAA93663B34DAD7A5?ln=primefaces&v=5.0 HTTP/1.1" 200 55469
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/images/ui-bg_gloss-wave_45_817865_500x100.png?ln=primefaces-sunny HTTP/1.1" 200 3971
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/images/ui-bg_gloss-wave_60_fece2f_500x100.png?ln=primefaces-sunny HTTP/1.1" 200 3512
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_feeebd_1x100.png?ln=primefaces-sunny HTTP/1.1" 200 108
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /Vendas/faces/javax.faces.resource/images/ui-icons_3d3d3d_256x240.png?ln=primefaces-sunny HTTP/1.1" 200 4369
+0:0:0:0:0:0:0:1 - - [18/Aug/2023:19:36:47 -0300] "GET /favicon.ico HTTP/1.1" 404 1016
