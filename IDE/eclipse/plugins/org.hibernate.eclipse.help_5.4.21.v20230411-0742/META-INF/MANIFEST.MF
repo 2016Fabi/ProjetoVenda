@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.5.2
+Build-Jdk-Spec: 17
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name.0
+Bundle-SymbolicName: org.hibernate.eclipse.help; singleton:=true
+Bundle-Version: 5.4.21.v20230411-0742
+Bundle-Activator: org.hibernate.eclipse.help.HelpPlugin
+Bundle-Vendor: %Bundle-Vendor.0
+Bundle-Localization: plugin
+Export-Package: org.hibernate.eclipse.help
+Require-Bundle: org.eclipse.help;bundle-version="3.6.0",org.eclipse.help
+ .ui;bundle-version="4.0.100"
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Eclipse-SourceReferences: scm:git:https://github.com/jbosstools/jbosstoo
+ ls-hibernate.git;path="orm/plugin/core/org.hibernate.eclipse.help";comm
+ itId=a876fee307ff773a0c70a001e2d9217a84e109a5
+Bundle-License: Eclipse Public License;link="http://www.eclipse.org/lega
+ l/epl-v10.html"
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009 The Chromium Authors. All rights reserved.
+  This program and the accompanying materials are made available
+  under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at
+  https://www.eclipse.org/legal/epl-2.0/
+-->
+<feature
+      id="org.eclipse.wst.jsdt.chromium.debug.feature"
+      label="%featureName"
+      version="0.6.300.v202205232338"
+      provider-name="%providerName"
+      plugin="org.eclipse.wst.jsdt.chromium.debug">
+
+   <description url="http://code.google.com/p/chromedevtools/wiki/EclipseDebugger">
+      %description
+   </description>
+
+   <copyright>
+      Copyright (c) 2012 The Chromium Authors. All rights reserved.
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.text" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.variables" version="3.2.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.4.1" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.debug.core"
+         download-size="458"
+         install-size="1050"
+         version="0.5.300.v201903222101"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.debug.ui"
+         download-size="637"
+         install-size="1504"
+         version="0.6.300.v202205232338"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.debug.js"
+         download-size="52"
+         install-size="122"
+         version="0.1.200.v201903222101"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.debug"
+         download-size="14"
+         install-size="17"
+         version="0.4.0.v201903222101"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium"
+         download-size="736"
+         install-size="1631"
+         version="0.5.200.v201903222101"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.debug.jsdtbridge"
+         download-size="26"
+         install-size="67"
+         version="0.5.200.v201903222101"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.wip.eclipse"
+         download-size="15"
+         install-size="21"
+         version="0.5.200.v201903222101"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.wipbackend.dev"
+         download-size="1030"
+         install-size="2250"
+         version="0.5.300.v201903222101"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.jsdt.chromium.wipbackend.protocol_1_0"
+         download-size="659"
+         install-size="1483"
+         version="0.5.300.v201903222101"
+         unpack="false"/>
+
+</feature>

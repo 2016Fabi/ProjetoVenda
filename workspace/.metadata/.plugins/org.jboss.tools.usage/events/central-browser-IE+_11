@@ -1,10 +1,10 @@
-#Fri Aug 18 19:35:52 BRT 2023
+#Fri Aug 18 22:50:50 BRT 2023
 a=browser
-c=1
+c=2
 cl=IE _11
 cmp=central
 ct=central
-d=1692398152019
+d=1692409850835
 l=Specifies which browser was used for JBoss Tools Central
 s=0
 v=2.2.0

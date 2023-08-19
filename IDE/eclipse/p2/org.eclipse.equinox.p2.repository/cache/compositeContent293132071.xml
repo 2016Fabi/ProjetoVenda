@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?compositeMetadataRepository version='1.0.0'?>
+<repository name='JBoss Tools - Core + Central Update Site - TOOLS-ssh/photon/stable/composite/4.28.0/' type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1688390377000'/>
+    <property name='p2.compressed' value='true'/>
+  </properties>
+  <children size='4'>
+    <child location='https://download.jboss.org/jbosstools/targetplatforms/jbosstoolstarget/4.28.0.Final-SNAPSHOT/REPO/'/>
+    <child location='https://download.jboss.org/jbosstools/targetplatforms/jbtcentraltarget/4.28.0.AM1-SNAPSHOT/REPO/'/>
+    <child location='https://download.jboss.org/jbosstools/static/photon/stable/updates/core/4.28.0.Final/'/>
+    <child location='https://download.jboss.org/jbosstools/static/photon/stable/updates/central/4.28.0.Final/'/>
+  </children>
+</repository>

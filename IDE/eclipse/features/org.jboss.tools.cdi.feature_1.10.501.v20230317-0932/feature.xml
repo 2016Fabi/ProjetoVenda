@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.jboss.tools.cdi.feature" label="%featureName" version="1.10.501.v20230317-0932" provider-name="%featureProvider" plugin="org.jboss.tools.cdi.ui">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+   
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.jboss.tools.common.feature" version="3.5.0" match="greaterOrEqual"/>
+      <import feature="org.jboss.tools.jst.feature" version="3.5.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.jboss.tools.cdi.core"
+         download-size="482"
+         install-size="1132"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.cdi.extension.core"
+         download-size="13"
+         install-size="99"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.cdi.ui"
+         download-size="309"
+         install-size="738"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.cdi.xml"
+         download-size="51"
+         install-size="229"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.cdi.xml.ui"
+         download-size="22"
+         install-size="114"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.cdi.text.ext"
+         download-size="74"
+         install-size="228"
+         version="1.10.501.v20230317-0932"
+         unpack="false"/>
+
+</feature>

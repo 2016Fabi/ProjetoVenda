@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.5.2
+Build-Jdk-Spec: 17
+Bundle-ManifestVersion: 2
+Bundle-Name: %BundleName
+Bundle-SymbolicName: org.jboss.tools.central; singleton:=true
+Bundle-Version: 2.3.100.v20230525-0909
+Bundle-Activator: org.jboss.tools.central.JBossCentralActivator
+Require-Bundle: org.eclipse.ui;bundle-version="3.7.0",org.eclipse.core.r
+ untime;bundle-version="3.7.0",org.eclipse.jface.text;bundle-version="3.
+ 7.0",org.eclipse.core.resources;bundle-version="3.7.0",org.eclipse.ui.e
+ ditors;bundle-version="3.7.0",org.eclipse.ui.ide;bundle-version="3.7.0"
+ ,org.eclipse.ui.forms;bundle-version="3.5.100",org.eclipse.ui.browser;b
+ undle-version="3.3.100",com.sun.syndication;bundle-version="0.9.0",org.
+ jdom;bundle-version="1.0.0",org.apache.commons.lang;bundle-version="2.4
+ .0",org.jboss.tools.project.examples;bundle-version="2.0.0";visibility:
+ =reexport,org.eclipse.equinox.p2.ui.sdk;bundle-version="1.0.200",org.ec
+ lipse.equinox.p2.core;bundle-version="2.1.0",org.eclipse.equinox.p2.eng
+ ine;bundle-version="2.1.0",org.jboss.tools.common.core;bundle-version="
+ 3.5.0",org.apache.commons.io;bundle-version="2.0.0",org.jboss.tools.fou
+ ndation.core;bundle-version="1.0.0",org.eclipse.equinox.p2.ui;bundle-ve
+ rsion="2.3.0",org.eclipse.equinox.p2.operations;bundle-version="2.3.0",
+ org.eclipse.equinox.p2.metadata;bundle-version="2.2.0",org.eclipse.equi
+ nox.p2.repository;bundle-version="2.3.0",org.eclipse.equinox.p2.directo
+ r;bundle-version="2.3.0",org.eclipse.e4.ui.model.workbench;bundle-versi
+ on="1.0.0",org.eclipse.e4.ui.workbench;bundle-version="1.0.0",org.eclip
+ se.core.filesystem,org.eclipse.ui.net,org.jboss.tools.discovery.core;bu
+ ndle-version="1.2.1",org.jboss.tools.foundation.help.ui;bundle-version=
+ "1.2.0",com.google.guava;bundle-version="15.0.0",org.jboss.ide.eclipse.
+ as.dmr;bundle-version="3.0.1",org.eclipse.equinox.preferences,org.eclip
+ se.e4.core.contexts;bundle-version="1.3.100",org.eclipse.e4.ui.css.swt.
+ theme;bundle-version="0.9.300",org.jboss.tools.usage,org.jboss.tools.fo
+ undation.ui,org.eclipse.equinox.p2.discovery;bundle-version="1.2.0",org
+ .eclipse.equinox.p2.ui.discovery;bundle-version="1.2.300",org.eclipse.e
+ quinox.p2.discovery.compatibility;bundle-version="1.2.200"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-Localization: plugin
+Bundle-Vendor: %BundleVendor
+Bundle-ClassPath: lib/ocpsoft-pretty-time-1.0.7.jar,.
+Export-Package: org.jboss.tools.central,org.jboss.tools.central.actions,
+ org.jboss.tools.central.configurators,org.jboss.tools.central.editors,o
+ rg.jboss.tools.central.editors.xpl,org.jboss.tools.central.internal;x-f
+ riends:="org.jboss.tools.central.test",org.jboss.tools.central.internal
+ .discovery.wizards;x-friends:="org.jboss.tools.central.test",org.jboss.
+ tools.central.jobs,org.jboss.tools.central.model,org.jboss.tools.centra
+ l.preferences
+Eclipse-BundleShape: dir
+Eclipse-SourceReferences: scm:git:https://github.com/jbosstools/jbosstoo
+ ls-central.git;path="central/plugins/org.jboss.tools.central";commitId=
+ d37ac12defb974f6fa76204cb7f289e83f98894d
+Bundle-License: Eclipse Public License;link="http://www.eclipse.org/lega
+ l/epl-v10.html"
+

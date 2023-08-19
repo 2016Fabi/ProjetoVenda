@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.hibernate.eclipse.feature"
+      label="%featureName"
+      version="5.4.21.v20230620-1558"
+      provider-name="%providerName"
+      plugin="org.hibernate.eclipse">
+
+   <description url="http://tools.hibernate.org">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.views" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.text" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.help" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.gef" version="3.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.core" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="0.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.common.project.facet.core" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.common.project.facet.ui" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.help.ui"/>
+      <import plugin="org.eclipse.wst.xml.core" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.sse.core" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.xml.ui" version="1.0.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.sse.ui" version="1.0.101" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.dtd.core" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.wst.common.ui" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.navigator"/>
+      <import plugin="org.eclipse.pde.core"/>
+      <import plugin="org.apache.ant"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.jdt.apt.core"/>
+   </requires>
+
+   <plugin
+         id="org.hibernate.eclipse"
+         download-size="252"
+         install-size="535"
+         version="5.4.21.v20230615-1500"
+         unpack="false"/>
+
+   <plugin
+         id="org.hibernate.eclipse.console"
+         download-size="2409"
+         install-size="5669"
+         version="5.4.21.v20230523-1452"
+         unpack="false"/>
+
+   <plugin
+         id="org.hibernate.eclipse.help"
+         download-size="294"
+         install-size="352"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.hibernate.eclipse.jdt.ui"
+         download-size="196"
+         install-size="487"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.hibernate.eclipse.mapper"
+         download-size="213"
+         install-size="524"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.common"
+         download-size="102"
+         install-size="239"
+         version="5.4.21.v20230516-1252"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_3_5"
+         download-size="3389"
+         install-size="3742"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_3_6"
+         download-size="3554"
+         install-size="3937"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_4_0"
+         download-size="4554"
+         install-size="5076"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_4_3"
+         download-size="5618"
+         install-size="6265"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_0"
+         download-size="5877"
+         install-size="6589"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.jpt.core"
+         download-size="338"
+         install-size="874"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.jpt.ui"
+         download-size="346"
+         install-size="882"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.antlr.v_2_7_7"
+         download-size="414"
+         install-size="437"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.bsh.v_2_0_b4"
+         download-size="136"
+         install-size="143"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.dom4j.v_1_6_1"
+         download-size="287"
+         install-size="309"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jtidy.v_r8-20060801"
+         download-size="232"
+         install-size="245"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.spi"
+         download-size="29"
+         install-size="44"
+         version="5.4.21.v20230615-1500"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.ui"
+         download-size="289"
+         install-size="592"
+         version="5.4.21.v20230523-1452"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.xml"
+         download-size="140"
+         install-size="879"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.xml.ui"
+         download-size="66"
+         install-size="216"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_1"
+         download-size="5967"
+         install-size="6691"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_2"
+         download-size="6340"
+         install-size="7103"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_3"
+         download-size="6587"
+         install-size="7491"
+         version="5.4.21.v20230609-1359"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_4"
+         download-size="6808"
+         install-size="7734"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_5"
+         download-size="6954"
+         install-size="7900"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.orm.ui"
+         download-size="8"
+         install-size="28"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jpa.v_2_2"
+         download-size="135"
+         install-size="163"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jboss-logging.v_3_4"
+         download-size="57"
+         install-size="61"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.transaction-api.v_1_2"
+         download-size="24"
+         install-size="28"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jaxb.v_2_3"
+         download-size="3184"
+         install-size="3578"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.hibernate-commons-annotations.v_5_1"
+         download-size="67"
+         install-size="80"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.classmate.v_1_5"
+         download-size="61"
+         install-size="68"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jandex.v_2_4"
+         download-size="213"
+         install-size="227"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.commons-collections4.v_4_4"
+         download-size="658"
+         install-size="737"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.freemarker.v_2_3"
+         download-size="1510"
+         install-size="1678"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_5_6"
+         download-size="6934"
+         install-size="7876"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jakarta-persistence-api.v_3_0"
+         download-size="126"
+         install-size="155"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jakarta-transaction-api.v_2_0"
+         download-size="26"
+         install-size="29"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jakarta-xml-bind-api.v_3_0"
+         download-size="111"
+         install-size="128"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jakarta-activation-api.v_2_0"
+         download-size="44"
+         install-size="49"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jaxb.v_3_0"
+         download-size="3045"
+         install-size="3437"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_6_0"
+         download-size="8856"
+         install-size="9873"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.javassist.v_3_28"
+         download-size="778"
+         install-size="834"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.hibernate-commons-annotations.v_6_0"
+         download-size="58"
+         install-size="69"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.antlr4-runtime.v_4_10"
+         download-size="291"
+         install-size="317"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.byte-buddy.v_1_12"
+         download-size="3277"
+         install-size="3750"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.dom4j.v_2_1"
+         download-size="300"
+         install-size="318"
+         version="5.4.21.v20230411-0742"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.h2.v_2_1"
+         download-size="2371"
+         install-size="2486"
+         version="5.4.21.v20230411-0742"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_6_1"
+         download-size="9184"
+         install-size="10239"
+         version="5.4.21.v20230515-1559"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.runtime.v_6_2"
+         download-size="10196"
+         install-size="11442"
+         version="5.4.21.v20230620-1558"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.hibernate.libs.jakarta-persistence-api.v_3_1"
+         download-size="133"
+         install-size="164"
+         version="5.4.21.v20230411-0742"/>
+
+</feature>

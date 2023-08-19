@@ -1,0 +1,10 @@
+<?compositeArtifactRepository version='1.0.0'?>
+<repository name='Eclipse Orbit Composite Site R20230531010532'
+    type='org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository' version='1.0.0'>
+  <properties size='1'>
+    <property name='p2.timestamp' value='1685495682962'/>
+  </properties>
+  <children size='1'>
+    <child location='../drops/R20230531010532/repository'/>
+  </children>
+</repository>

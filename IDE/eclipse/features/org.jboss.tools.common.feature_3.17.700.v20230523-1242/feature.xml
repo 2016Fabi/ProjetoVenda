@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jboss.tools.common.feature"
+      label="%featureName"
+      version="3.17.700.v20230523-1242"
+      provider-name="%providerName"
+      plugin="org.jboss.tools.common.el.ui">
+
+   <description url="http://www.jboss.org/tools">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.wst.common_core.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.wst.common_ui.feature" version="0.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.jboss.tools.common.el.core"
+         download-size="182"
+         install-size="411"
+         version="3.17.700.v20230523-1242"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.common.el.ui"
+         download-size="56"
+         install-size="178"
+         version="3.17.700.v20230523-1242"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.common.validation"
+         download-size="103"
+         install-size="273"
+         version="3.17.700.v20230523-1242"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.common.resref.core"
+         download-size="14"
+         install-size="30"
+         version="3.17.700.v20230523-1242"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.common.resref.ui"
+         download-size="17"
+         install-size="102"
+         version="3.17.700.v20230523-1242"
+         unpack="false"/>
+
+</feature>
