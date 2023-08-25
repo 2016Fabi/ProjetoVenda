@@ -1,4 +1,4 @@
-INDEX VERSION 1.131+D:\Sistema Vendas\workspace\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.127+D:\Sistema Vendas\workspace\.metadata\.plugins\org.eclipse.jdt.core
 3154479296.index
 3433509804.index
 4266238594.index
@@ -13,7 +13,6 @@ INDEX VERSION 1.131+D:\Sistema Vendas\workspace\.metadata\.plugins\org.eclipse.j
 1147174324.index
 2581279432.index
 3776155188.index
-1865797976.index
 3326025560.index
 3416984877.index
 1466384157.index

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.jboss.tools.modeshape.rest.feature.source" version="3.8.0.Final-v20160621-1928-B214" plugin="org.jboss.tools.modeshape.rest" label="%featureName" provider-name="%featureProvider">
+  <includes id="org.jboss.tools.modeshape.rest.feature" version="3.8.0.Final-v20160621-1928-B214"/>
+  <description>
+      %description
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseUrl">
+      %license
+   </license>
+  <plugin id="org.jboss.tools.modeshape.ui.source" version="3.8.0.Final-v20160621-1928-B214" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.jboss.tools.modeshape.rest.source" version="3.8.0.Final-v20160621-1928-B214" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.jboss.tools.modeshape.rest.doc.user.source" version="3.8.0.Final-v20160621-1928-B214" download-size="0" install-size="0" unpack="false"/>
+</feature>

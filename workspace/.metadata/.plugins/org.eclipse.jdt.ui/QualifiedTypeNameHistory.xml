@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
-    <fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.util.HibernateUtil"/>
-    <fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.domain.Fornecedor"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.util.JSFUtil"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.dao.FuncionariosDAO"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.dao.ProdutosDAO"/>
-    <fullyQualifiedTypeName name="br.com.Vendas.dao.FornecedoresDAO"/>
+<fullyQualifiedTypeName name="org.hibernate.SessionFactory"/>
+<fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
+<fullyQualifiedTypeName name="br.com.Vendas.util.HibernateUtil"/>
+<fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
+<fullyQualifiedTypeName name="br.com.Vendas.domain.Fornecedor"/>
+<fullyQualifiedTypeName name="br.com.Vendas.util.JSFUtil"/>
+<fullyQualifiedTypeName name="br.com.Vendas.dao.FuncionariosDAO"/>
+<fullyQualifiedTypeName name="br.com.Vendas.dao.ProdutosDAO"/>
+<fullyQualifiedTypeName name="br.com.Vendas.dao.FornecedoresDAO"/>
 </qualifiedTypeNameHistroy>

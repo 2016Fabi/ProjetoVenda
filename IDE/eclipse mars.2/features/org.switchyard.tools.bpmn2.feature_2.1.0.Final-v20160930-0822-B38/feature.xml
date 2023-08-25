@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.switchyard.tools.bpmn2.feature"
+      label="%featureName"
+      version="2.1.0.Final-v20160930-0822-B38"
+      provider-name="%featureProvider">
+
+   <description url="http://www.jboss.org/switchyard">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.switchyard.tools.feature" version="2.1.0.qualifier"/>
+      <import feature="org.eclipse.bpmn2.modeler" version="1.2.0" match="equivalent"/>
+      <import feature="org.eclipse.bpmn2.modeler.runtime.jboss" version="1.2.0" match="equivalent"/>
+   </requires>
+
+   <plugin
+         id="org.switchyard.tools.ui.bpmn2"
+         download-size="334"
+         install-size="689"
+         version="2.1.0.Final-v20160930-0822-B38"
+         unpack="false"/>
+
+</feature>

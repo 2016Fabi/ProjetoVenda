@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.jboss.tools.runtime.jbpm.detector.feature.source" version="4.5.200.Final-v20130815-1941-B2008" plugin="org.jboss.tools.runtime.jbpm.detector" label="%featureName" provider-name="%providerName">
+  <includes id="org.jboss.tools.runtime.jbpm.detector.feature" version="4.5.200.Final-v20130815-1941-B2008"/>
+  <description>
+      %description
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.jboss.tools.runtime.jbpm.detector.source" version="4.5.200.Final-v20130815-1941-B2008" download-size="0" install-size="0" unpack="false"/>
+</feature>

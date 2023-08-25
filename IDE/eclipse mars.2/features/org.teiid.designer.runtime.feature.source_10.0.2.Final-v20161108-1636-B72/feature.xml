@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.teiid.designer.runtime.feature.source" version="10.0.2.Final-v20161108-1636-B72" label="Teiid Designer Runtime Developer Resources" provider-name="%providerName">
+  <includes id="org.teiid.designer.runtime.feature" version="10.0.2.Final-v20161108-1636-B72"/>
+  <description url="http://www.example.com/description">
+      Teiid Designer Runtime
+
+Including: Connection management, VDB creation and management and Data Preview/VDB execution
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.teiid.designer.dqp.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.dqp.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.advisor.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.teiidimporter.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <includes id="org.teiid.designer.feature.source" version="10.0.2.Final-v20161108-1636-B72"/>
+  <includes id="org.teiid.designer.teiid.client.feature.source" version="10.0.2.Final-v20161108-1636-B72"/>
+</feature>

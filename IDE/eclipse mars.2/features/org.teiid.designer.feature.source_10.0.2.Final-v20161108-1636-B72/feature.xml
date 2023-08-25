@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.teiid.designer.feature.source" version="10.0.2.Final-v20161108-1636-B72" plugin="org.teiid.designer" label="Teiid Designer Developer Resources" provider-name="%providerName">
+  <includes id="org.teiid.designer.feature" version="10.0.2.Final-v20161108-1636-B72"/>
+  <description url="www.jboss.org/projects/teiiddesigner">
+      %description
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.teiid.designer.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.core.xslt.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.relational.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.core.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.core.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.ddl.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.jdbc.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.jdbc.relational.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.jdbc.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.diagram.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.transformation.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.query.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.ui.common.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.dependency.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.function.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.xml.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.xsd.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.diagram.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.mapping.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.mapping.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.sdt.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.transformation.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.transformation.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.xml.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.xml.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.compare.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.xsd.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.compare.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.webservice.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.wsdl.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.webservice.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.webservice.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.tools.textimport.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.relational.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.relational.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.builder.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.builder.execution.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.xsd.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.core.designer.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.metamodels.xsd.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.salesforce.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.salesforce.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.udf.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.udf.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.legacy.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.vdb.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.vdb.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.datatools.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.datatools.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.ddl.importer.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.ddl.importer.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.roles.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.wsdl.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.wsdl.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.schema.tools.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.xml.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.extension.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.extension.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modeshape.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.spi.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.ddl.spi.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.modelgenerator.ldap.ui.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.teiid.designer.webservice.lib.source" version="10.0.2.Final-v20161108-1636-B72" download-size="0" install-size="0" unpack="false"/>
+  <includes id="org.teiid.datatools.connectivity.feature.source" version="10.0.2.Final-v20161108-1636-B72"/>
+  <includes id="org.teiid.designer.library.feature.source" version="10.0.2.Final-v20161108-1636-B72"/>
+</feature>

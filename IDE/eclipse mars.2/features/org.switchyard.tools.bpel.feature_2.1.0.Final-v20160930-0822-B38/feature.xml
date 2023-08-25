@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.switchyard.tools.bpel.feature"
+      label="%featureName"
+      version="2.1.0.Final-v20160930-0822-B38"
+      provider-name="%featureProvider">
+
+   <description url="http://www.jboss.org/switchyard">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.switchyard.tools.feature" version="2.1.0.qualifier"/>
+      <import feature="org.eclipse.bpel.feature" version="1.0.2" match="compatible"/>
+      <import feature="org.eclipse.bpel.common.feature" version="1.0.2" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.switchyard.tools.ui.bpel"
+         download-size="52"
+         install-size="108"
+         version="2.1.0.Final-v20160930-0822-B38"
+         unpack="false"/>
+    
+</feature>

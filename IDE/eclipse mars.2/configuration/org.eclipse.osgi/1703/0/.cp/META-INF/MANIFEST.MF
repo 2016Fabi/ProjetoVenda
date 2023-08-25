@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-Vendor: %providerName
+Build-Jdk: 1.7.0_67
+Built-By: bamboo
+Bundle-Version: 3.7.0.201506251244-RELEASE
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Created-By: Apache Maven 3.0.5
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.springframework.ide.eclipse.doc;singleton:=tr
+ ue
+Source-Control-Identifier: 2191f7f29909d28407703dbfd6922cef5353e9ed
+Archiver-Version: Plexus Archiver
+
+Name: intro/overview.xml
+SHA-256-Digest: GbQQD3tJRMPJE4xiD3fQ47tuUGZd5oY2EGkO7SW1J7Q=
+
+Name: toc.xml
+SHA-256-Digest: N3FXlcpO1H26Zs3pw9hgD+uMKds5oDIOU1OTtOpxyxk=
+
+Name: plugin.xml
+SHA-256-Digest: qkDmRP6WrTfRMixDNxuLDkQeeJTV3TTituM34lSaxfk=
+
+Name: intro/css/overview.properties
+SHA-256-Digest: yej2akShYxIRdLgwUhUxBbK4RSqdOdwiALepXfQGF2Y=
+
+Name: plugin.properties
+SHA-256-Digest: pLvPik9dx47T+z9snprvWGIXnworMiiiI+IaFdPM/a8=
+
+Name: intro/css/overview.css
+SHA-256-Digest: AY42AWME1nCeYZoXJ6/QwlRqEwo26zEebySyXXP5lXg=
+
+Name: intro/images/springide.png
+SHA-256-Digest: 0HdArnF8ZSGnItbHCIt8vTgnezkDd2uQCg34+sp7Kbs=
+

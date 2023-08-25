@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jbpm.eclipse.feature"
+      label="%featurename"
+      version="6.4.1.Final-v20160503-1355-B205"
+      provider-name="%providername">
+
+   <description url="http://www.jboss.org/jbpm/">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.ui.views.properties.tabbed"/>
+      <import plugin="org.kie.eclipse"/>
+      <import plugin="org.drools.eclipse"/>
+   </requires>
+
+   <plugin
+         id="org.jbpm.eclipse"
+         download-size="8077"
+         install-size="9066"
+         version="6.4.1.Final-v20160503-1355-B205"
+         unpack="false"/>
+
+</feature>

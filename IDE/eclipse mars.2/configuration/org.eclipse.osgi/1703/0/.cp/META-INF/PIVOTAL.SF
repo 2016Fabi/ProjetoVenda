@@ -1,0 +1,27 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: 5pJ7CTaSDmCBFouSciYag7s/QqKTt
+ jkzQXB9GbxIBgM=
+SHA-256-Digest-Manifest: GXeJmSFBWv023zviO9YqkkEW7pmCRPVmplDoY9EZd6A=
+Created-By: 1.7.0_67 (Oracle Corporation)
+
+Name: intro/overview.xml
+SHA-256-Digest: By98zol0esd4ddib4ujqywPpOI9UcOhaYhRAb/5FGgM=
+
+Name: toc.xml
+SHA-256-Digest: HltYAYpt6Eufg85YV+m+QjZnUdaWqDP5hucYwd9aHN4=
+
+Name: plugin.xml
+SHA-256-Digest: bz2Ubyl2Df/AhY82UudjmyC3vCC8bORytkRXfafMtq8=
+
+Name: intro/css/overview.properties
+SHA-256-Digest: hm+K19NWaSJtmvXMI7TKZp4R4fS7WIimZ+/nDmaUr5s=
+
+Name: plugin.properties
+SHA-256-Digest: qla4VFsSETg/P0ZSH94gEUj731OZjV3YAyhynzSRBfs=
+
+Name: intro/css/overview.css
+SHA-256-Digest: NW3EO5jYgWm/o/RcQkwnIlCiYakhkc2q5Kp4oIoxpDM=
+
+Name: intro/images/springide.png
+SHA-256-Digest: RJPQ/L/IVs/8o4p+f03bUFOFdTWHShLphYBLlF0aVdI=
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jboss.tools.fuse.transformation.feature"
+      label="%featureName"
+      version="8.0.0.Final-v20161003-0720-B128"
+      provider-name="%providerName"
+      plugin="org.fusesource.ide.tooling">
+
+<description url="http://tools.jboss.org/features/apachecamel.html">
+      %description
+   </description>
+
+   <copyright url="http://redhat.com/">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="JBoss Tools Update Site" url="http://download.jboss.org/jbosstools/updates/development/mars/"/>
+   </url>
+
+   <requires>
+      <import feature="org.fusesource.ide.core.feature" version="8.0.0" match="greaterOrEqual"/>
+      <import feature="org.fusesource.ide.camel.editor.feature" version="8.0.0" match="greaterOrEqual"/>
+      
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.resources" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jdt.core" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.core.databinding" version="1.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.databinding.beans" version="1.2.200" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.databinding.property" version="1.4.200" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.databinding"/>
+      <import plugin="org.eclipse.graphiti" version="0.10.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.graphiti.mm" version="0.10.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.graphiti.pattern" version="0.10.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.graphiti.ui" version="0.10.2" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.jboss.tools.fuse.transformation.core"
+         download-size="2519"
+         install-size="3030"
+         version="8.0.0.Final-v20161003-0720-B128"
+         unpack="false"/>
+
+   <plugin
+         id="org.jboss.tools.fuse.transformation.editor"
+         download-size="438"
+         install-size="942"
+         version="8.0.0.Final-v20161003-0720-B128"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jboss.tools.modeshape.rest.feature"
+      label="%featureName"
+      version="3.8.0.Final-v20160621-1928-B214"
+      provider-name="%featureProvider"
+      plugin="org.jboss.tools.modeshape.rest"
+      image="feature.png">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseUrl">
+      %license
+   </license>
+
+   <plugin
+         id="org.jboss.tools.modeshape.ui"
+         download-size="35"
+         install-size="57"
+         version="3.8.0.Final-v20160621-1928-B214"/>
+
+   <plugin
+         id="org.jboss.tools.modeshape.rest"
+         download-size="196"
+         install-size="380"
+         version="3.8.0.Final-v20160621-1928-B214"/>
+
+   <plugin
+         id="org.jboss.tools.modeshape.rest.doc.user"
+         download-size="754"
+         install-size="758"
+         version="3.8.0.Final-v20160621-1928-B214"/>
+
+   <plugin
+         id="org.jboss.tools.modeshape.client"
+         download-size="2586"
+         install-size="2935"
+         version="3.8.0.Final-v20160621-1928-B214"/>
+
+</feature>

@@ -7,7 +7,7 @@
 	<section name="NewWizardAction">
 	</section>
 	<section name="ChooseWorkspaceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="619"/>
-		<item key="DIALOG_Y_ORIGIN" value="274"/>
+		<item value="619" key="DIALOG_X_ORIGIN"/>
+		<item value="274" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

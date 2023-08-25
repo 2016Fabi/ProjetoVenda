@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jbpm.gd.jpdl.feature"
+      label="%featureName"
+      version="4.5.200.Final-v20130815-1941-B2008"
+      provider-name="%featureProvider">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.jbpm.gd.jpdl"
+         download-size="1291"
+         install-size="2278"
+         version="4.5.200.Final-v20130815-1941-B2008"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,299 @@
+Manifest-Version: 1.0
+Bundle-Vendor: %providerName
+Ant-Version: Apache Ant 1.9.2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 2.2.4.e44x-20140516-1000
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Created-By: 1.7.0_55-b13 (Oracle Corporation)
+Bundle-SymbolicName: org.eclipse.aspectj; singleton:=true
+
+Name: intro/rad/css/graphics/icons/etool/webrsrc48sel.gif
+SHA-256-Digest: tF8G5JBBnqGV0Ki8H5wOeMfguX4brNTrQeQ90NN2Qsc=
+
+Name: intro/rad/css/graphics/icons/etool/samples48sel.gif
+SHA-256-Digest: cKHdOjswYJqyl9rkkotJPCO1iEHDYMUjuGAirgdXA4U=
+
+Name: intro/rad/css/graphics/icons/ajdt/aj_logohov.gif
+SHA-256-Digest: S6rDIbtl3DmVTZqj3G5/eZ2JPgGXBD1etSuQ1zhTaDE=
+
+Name: intro/rad/radAjdtTutorialsExtensionContent.xml
+SHA-256-Digest: g47ZpKSnJ2ZHKGQpevx1KVKDqjbf8BrOezYhcMRt4CE=
+
+Name: intro/eclipse/ajdtSamplesExtensionContent.xml
+SHA-256-Digest: XpoBWX7ilrF3eaYb2DTpFIfvf2halwSi1UyDEa0zzaM=
+
+Name: intro/rad/css/graphics/icons/etool/overview72.gif
+SHA-256-Digest: ySYVNwLpnFo4DNuZ7vExdPG6wVvlqOhATeZCiVxzfoU=
+
+Name: intro/eclipse/ajdtTutorialsExtensionContent.xml
+SHA-256-Digest: k9F44nY20E+eONpCrJbMDtvLESayQr1/QrP8lfnQfVs=
+
+Name: intro/rad/css/content-swt.properties
+SHA-256-Digest: Jw+VpE5/D8zGxK9BieLTrfoR0O/AYjh1CPn1HA/7hLA=
+
+Name: intro/rad/css/graphics/icons/ctool/samples48.gif
+SHA-256-Digest: 5lUkaBdcgcUrbJW8qfCl27cdhE2q42EWmlFbezhDLog=
+
+Name: intro/rad/css/graphics/icons/ctool/webrsrc72.gif
+SHA-256-Digest: E18rowsZ/EgmTbas9vuPZb0goIhBONud9tOAem4Es1U=
+
+Name: intro/rad/css/graphics/icons/ctool/retuser72.gif
+SHA-256-Digest: ojnTA6Fd099wzXDj8DXFIdE7VTwEMX9E2uKFGXN6dCw=
+
+Name: intro/rad/css/overview.css
+SHA-256-Digest: hO5D0W3M/rOqlCdEHj76C/CUVXo8GBns3NJ/xliheJ0=
+
+Name: intro/rad/css/firststeps.css
+SHA-256-Digest: EsMzbaASJuTX8SZ19+05I7sl1o2sgv+SkOje7OQRcQA=
+
+Name: intro/eclipse/css/graphics/ajapp_obj.gif
+SHA-256-Digest: /9NR70Dy/2ZiPAslk3+g0kvpCvgNmFxrvN65pUC69gk=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_windowhov.gif
+SHA-256-Digest: FKpMiBvfL2lWZcalsfalnb+xd6wb6HOuWWn99IRP7dg=
+
+Name: intro/rad/css/graphics/icons/ctool/samples72.gif
+SHA-256-Digest: 3L2SPMcwkTL08sLV36NJjqAF1wBWcuC7cMq+eNrvjG8=
+
+Name: intro/rad/css/graphics/icons/ctool/wb48.gif
+SHA-256-Digest: bn3bzf0CH2nsJzPALIehBjevYXmtViRTFKCGu6m/cX8=
+
+Name: intro/rad/css/graphics/icons/ajdt/ajdevhov_obj.gif
+SHA-256-Digest: UIAiu+BltMaNa5zdXLh1YKYV0MjwGevaSA5nbCTIdtk=
+
+Name: plugin.properties
+SHA-256-Digest: TnU+GJvtXfCVtQ3zOF0trc5BqVpMhuqdhv34hZ0FZs0=
+
+Name: intro/rad/css/graphics/icons/etool/retuser48sel.gif
+SHA-256-Digest: fcU7YHVg4ijG/UBpzvkE82ok4S4t+7OLBhPL1j/EYHE=
+
+Name: intro/rad/css/graphics/icons/etool/samples48.gif
+SHA-256-Digest: 2RS30x0VtzF0EkQBK62H3TdP6iQOIh6hlqgjy2y6wIQ=
+
+Name: intro/rad/css/graphics/icons/etool/firsteps48.gif
+SHA-256-Digest: XLJNImPlen3SxTHgBTmbb9WV2sXYUFKxJ/85RvPYHBE=
+
+Name: intro/rad/radAjdtWebExtensionContent.xml
+SHA-256-Digest: NM7NgCjpa8bYBp6oRnClvtXp4BfB1E5+F/pHdcPDgCA=
+
+Name: about.ini
+SHA-256-Digest: gTDUdltOw8R/Rvt//aUDynRpeOcrhcFoyZmLAQyQr6A=
+
+Name: intro/rad/css/tutorial.css
+SHA-256-Digest: vvxyXQP1ih/P5OIsM3VI8Svifs98WRYrrxFjTJz5X0M=
+
+Name: intro/rad/css/graphics/icons/etool/webrsrc48.gif
+SHA-256-Digest: htyBgq7TXhCdEO4tZEulrE1sqK93+MOYEZRPgmPhIxI=
+
+Name: intro/rad/css/graphics/icons/etool/overview48.gif
+SHA-256-Digest: FqTfXPAUSiVnZgTo7SMreY+RSJGz17oePM2L6cklchQ=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_page.gif
+SHA-256-Digest: 2hRNbiabK8JcqXekhMGvsGt+lF+p338yoRk9NgBlpDk=
+
+Name: intro/rad/css/ad-images.css
+SHA-256-Digest: 6YEckzmukGN9KG0nmBmo6uhVn9XrJn79irhwOjWVN2g=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_folderhov.gif
+SHA-256-Digest: xD1WMtbenwZHy/0ClOnf6oETIvM1F0LcYFuJn7bKqbU=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_window2.gif
+SHA-256-Digest: /hrrW7tjlXFv4ojwjC9yoGKWBllLr16wU2Fwa8E3r8A=
+
+Name: intro/rad/css/graphics/icons/ctool/forward.gif
+SHA-256-Digest: NLO+kb1u31r7bNeTQpfJhw4e61C40PaHxkI/EB0EsZU=
+
+Name: intro/rad/css/graphics/icons/etool/webrsrc72.gif
+SHA-256-Digest: UQ17BsoWjwAJ6GjQeocZfFSOVXYY+T4XLbMfIhZ0yvw=
+
+Name: intro/rad/css/graphics/icons/etool/back.gif
+SHA-256-Digest: 6cnsiNxKaVIb+5j4RNbs0H1f+Mr0yZ2eoaPziqmoJ6k=
+
+Name: intro/rad/css/graphics/icons/ctool/samples48sel.gif
+SHA-256-Digest: 85Zyiifle6hyClgUFHOrrU4rm9/45NbLIKQzCronQjE=
+
+Name: intro/eclipse/css/ajdtNews.css
+SHA-256-Digest: y80cdY3Pf5Fa/NuifQxk1M1wM3Ex/uXE6a3IhUAyzig=
+
+Name: intro/rad/css/graphics/icons/ctool/overview48.gif
+SHA-256-Digest: wS3EE6/Ob98QQH+2f0mjuQdhFoUUWsVHnllSVNov2N8=
+
+Name: intro/rad/css/graphics/icons/etool/samples72.gif
+SHA-256-Digest: ++muQU2TJf+Z35VEIappc6hXWKnV3EC7MZ/GlrGAZj8=
+
+Name: intro/eclipse/css/ajdtOverview.css
+SHA-256-Digest: k12N3g40e3w420GfNMYkFyWxanGKfudW06JOXdBq/s8=
+
+Name: intro/rad/css/webresources.css
+SHA-256-Digest: lJpIYRwdCIuyRBkkwpbq26i1+hPW50+fAHMqKhsz/Ss=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_window2hov.gif
+SHA-256-Digest: 5NmH778RIhOAO4u6PV21OzPRowBFS3XKGZpD6F3QPdM=
+
+Name: intro/rad/css/graphics/icons/ctool/firsteps48.gif
+SHA-256-Digest: Mzkci+ID+hOTVyUbe+89nmyfCeS3w/4jywUUrsBkN6c=
+
+Name: intro/rad/css/graphics/icons/etool/tutorials72.gif
+SHA-256-Digest: 1xagPf4aAeth3QEuAb8fYdmAUypoJlVo7XmwW+rDKIc=
+
+Name: intro/rad/css/graphics/icons/ctool/overview48sel.gif
+SHA-256-Digest: LkVqb+XPAslN/xmBj33VBjJfo1C5MF4kKYc/qdddlRo=
+
+Name: intro/rad/css/graphics/icons/etool/firsteps48sel.gif
+SHA-256-Digest: WC/ANUCGpzdrwIxVrHJjqwFh/8ZibfzuRtIulCtvGFo=
+
+Name: cheatsheets/HelloWorld.xml
+SHA-256-Digest: 9K762aRNPV5ZBBf35TnApXLXw1llsB7RQkNo+Bt3wHY=
+
+Name: intro/rad/css/graphics/icons/ctool/firsteps72.gif
+SHA-256-Digest: z9GC3pTscL1obCoNRAZwx0K7EZbZOkhRR28mmc3B0vE=
+
+Name: intro/rad/css/graphics/icons/etool/tutorials48.gif
+SHA-256-Digest: BKdi4dw+MfJsACMzDdWUvG3g4SRikg6wEEs2e3U+V/I=
+
+Name: intro/rad/css/graphics/icons/ctool/tutorials48sel.gif
+SHA-256-Digest: 6bmSZTkKTbHLZOpHR+OJpVHtpywcjaKxwBM9hlkRAmw=
+
+Name: intro/rad/css/graphics/icons/etool/retuser72.gif
+SHA-256-Digest: hBchvQ5gnROev346WP4b2nTYzqstrj4mZ1fmK4kEq1Y=
+
+Name: intro/rad/css/graphics/icons/ctool/overview72.gif
+SHA-256-Digest: 93RPFb9prhv11uQHudUQarDTdqqT1Oeg6nOzdl2t9H8=
+
+Name: intro/rad/css/graphics/icons/etool/tutorials48sel.gif
+SHA-256-Digest: rGxDfLUTFhOtWdPGzPabzohkaXRUcV0fXSAlUBCZjqM=
+
+Name: intro/rad/radAjdtSamplesExtensionContent.xml
+SHA-256-Digest: PNDRXt9Fm0vgXDKXDU8bdw/GJHa1m9FZU3COku3B82M=
+
+Name: intro/rad/css/graphics/icons/ctool/firsteps48sel.gif
+SHA-256-Digest: WCoyJhivadnoM07lQSX5m9bDlsDJ7X46mxwvqAcbD5A=
+
+Name: intro/eclipse/css/graphics/ajapphov_obj.gif
+SHA-256-Digest: /GUYIrWfKgxUX5uDDmcW37iy4+kmJgz1zrXb6mrUbS8=
+
+Name: intro/rad/css/graphics/icons/ajdt/ajapphov_obj.gif
+SHA-256-Digest: /GUYIrWfKgxUX5uDDmcW37iy4+kmJgz1zrXb6mrUbS8=
+
+Name: intro/rad/css/graphics/icons/ctool/back.gif
+SHA-256-Digest: 1MEkAKotO6y/cf71gA7MCU3l6CL9gZYhTbcxkdJz64o=
+
+Name: intro/eclipse/css/graphics/sa_samplepyramid48.gif
+SHA-256-Digest: ofVohgm+wfdlkhABexfU5lkCSdzfXGV1UBduQM9s06w=
+
+Name: aspectj32.png
+SHA-256-Digest: 5kGlVFKJJ9aL+KtQTt2/vmzPH6AaZBwwzhbeMzo5bCI=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_pagehov.gif
+SHA-256-Digest: WsDMXVzVtxHQfr8AZzl5i0z9QMxz8MK821ssxHaEfhM=
+
+Name: intro/rad/css/content.css
+SHA-256-Digest: kQAoV4c8ViwHPmlR0ViwVsd7Aa2NwFvz89frYwJgb9k=
+
+Name: intro/rad/css/graphics/icons/ctool/webrsrc48sel.gif
+SHA-256-Digest: hIIfLGVKv8d2KIZq9rv1ETNAPM2eNpDYRw/0mDM+MYo=
+
+Name: intro/rad/css/graphics/icons/ctool/home.gif
+SHA-256-Digest: i80tU/+2FGo/jIsRP9p+d4UJ3mFOqBGkn4AuChYvXxI=
+
+Name: intro/rad/css/graphics/icons/etool/home.gif
+SHA-256-Digest: Xilw0xCbE/J5rK+hmTabfuR+JHmEwAnjrLkGuAhIchY=
+
+Name: intro/rad/css/graphics/icons/ctool/retuser48sel.gif
+SHA-256-Digest: V+vpo6JzttpRD1Gbasd2I6ozAfhNsh7S/TFcTsa2UHA=
+
+Name: intro/rad/css/graphics/icons/ajdt/aj_tutorial.gif
+SHA-256-Digest: 6WKrGOvfsoda5rBjqrXzdCtrvLVJ3aGBRyaUkWu1q5o=
+
+Name: about.html
+SHA-256-Digest: Zou0npn0qfCKRVjTOWfvcsgizJAClCvpMWgr81tFdag=
+
+Name: intro/rad/css/graphics/icons/etool/overview48sel.gif
+SHA-256-Digest: avV8ZipGwHssjLqBy29Q4BOBqpg5nnYZHzIzxC08l8o=
+
+Name: intro/rad/css/graphics/icons/ctool/retuser48.gif
+SHA-256-Digest: SKRXiTD3BPeyDar+QuQdQx764BLGtmPqQd5b1qHhqIM=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_window.gif
+SHA-256-Digest: ThOGagQEwPYrtawIcSQnlmja4kZV/kFeyhduyijxk4Y=
+
+Name: intro/rad/css/graphics/icons/ctool/webrsrc48.gif
+SHA-256-Digest: dU5jmcKAEw9Fvc4FtF6cBbKwKrL81sknBdxeNUjcZjg=
+
+Name: about.mappings
+SHA-256-Digest: XAFFoSgQi7rQSTEMXqxlW4kogy/+w4M/xRyRHBjZfjc=
+
+Name: intro/rad/css/graphics/icons/etool/retuser48.gif
+SHA-256-Digest: GwAqrZ1R5qQ7uROInpr1suEKpTtKCAIKp34ru85KY1c=
+
+Name: intro/rad/css/graphics/icons/ctool/tutorials48.gif
+SHA-256-Digest: Hf2+CyvD62CwLanMr6XIVHdjrShBYcxljsHA+1/ycOk=
+
+Name: intro/eclipse/css/ajdtTutorials.css
+SHA-256-Digest: daInDNX7uOYMZvwYnIw5+8Tx8kjd+LWksFEteMjBOJw=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+
+Name: intro/eclipse/ajdtOverviewExtensionContent.xml
+SHA-256-Digest: /0jGCtRavKILJ448j3pmEZAKWgmYkTeEeiXp0k36BaQ=
+
+Name: intro/eclipse/css/graphics/ajdev_obj.gif
+SHA-256-Digest: jtFBhG10JLlT7VCZlepRajZOLge3+0Ybi2+tE94jPWg=
+
+Name: intro/eclipse/css/graphics/ajdevhov_obj.gif
+SHA-256-Digest: UIAiu+BltMaNa5zdXLh1YKYV0MjwGevaSA5nbCTIdtk=
+
+Name: intro/rad/css/graphics/icons/ajdt/ajapp_obj.gif
+SHA-256-Digest: /9NR70Dy/2ZiPAslk3+g0kvpCvgNmFxrvN65pUC69gk=
+
+Name: intro/rad/css/graphics/icons/etool/wb48.gif
+SHA-256-Digest: Kh8Udp0pfYYqn7swBAl4oJgxhj9XZwxq05IJNbkT1aU=
+
+Name: intro/rad/css/graphics/icons/ajdt/aj_tutorialhov.gif
+SHA-256-Digest: SQjfj/wpp3mQveg0waKVdIM0c7/jqwCz9e8hc8614gk=
+
+Name: intro/eclipse/css/graphics/sa_samplepyramid48_hov.gif
+SHA-256-Digest: mFHcikxy4Ad2xy7dgh8MCZEXIZ2sMUv/nwH/rHcfIeU=
+
+Name: intro/eclipse/css/ajdtSamples.css
+SHA-256-Digest: xPoiRbbeHeF5tLkapCL3QyzTYVBOCo6ZwtadNLIl2TU=
+
+Name: intro/eclipse/css/ajdt.properties
+SHA-256-Digest: AzHJEnImFLHeYrJxaCEsl8YRszhphIN8m5A36pN2gO8=
+
+Name: intro/rad/css/graphics/icons/ajdt/aj_logo.gif
+SHA-256-Digest: XJipm0y8zDa9YliJAif+RUhdZoj50hbreTg4Q+CqVhU=
+
+Name: intro/rad/css/graphics/icons/ajdt/ajdev_obj.gif
+SHA-256-Digest: jtFBhG10JLlT7VCZlepRajZOLge3+0Ybi2+tE94jPWg=
+
+Name: intro/rad/css/graphics/icons/etool/forward.gif
+SHA-256-Digest: Dtgjgz9PgPdx1ETsfg7w+1OUytg/Z10C1woRoVwumI0=
+
+Name: about.properties
+SHA-256-Digest: zzwgt3mI/vdKHKlo1RoTGSswCE/dXnznXkiIzBM8g1o=
+
+Name: plugin.xml
+SHA-256-Digest: pSKm3zjKdSSZd+MvNFSxPUG7XstLOuP9E7nOSqQgb0s=
+
+Name: intro/rad/css/whatsnew.css
+SHA-256-Digest: 48DbS/X7DYIDcinQEvyHHW9Ypy0nN03zIQZqx0VdjC0=
+
+Name: intro/rad/radAjdtOverviewExtensionContent.xml
+SHA-256-Digest: /e75EdGrNXUV64SCwBHx7jrw63PyqUiGRQ1poQ2nGZc=
+
+Name: intro/rad/css/graphics/icons/ctool/tutorials72.gif
+SHA-256-Digest: NlbkPFygwQJX3DtfE5isrKDYrXFey8HhWRx+SQ6+12Q=
+
+Name: intro/rad/css/sample.css
+SHA-256-Digest: anI+w3Cl85ky962VzceBnRNLkJ4Ux7ef7dNu8VQDOBY=
+
+Name: intro/rad/css/graphics/icons/etool/firsteps72.gif
+SHA-256-Digest: GpCyygLRrbouhVx29l0iaKPzoZh8ReAOyY1dxfdEyOQ=
+
+Name: intro/rad/css/graphics/icons/ajdt/aspectj_folder.gif
+SHA-256-Digest: sszZem7z6l8WlhRPvWga48IxGubXLWayjtkYqrESDeE=
+

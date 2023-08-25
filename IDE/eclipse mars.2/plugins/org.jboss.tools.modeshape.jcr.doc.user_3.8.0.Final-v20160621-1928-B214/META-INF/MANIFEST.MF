@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.jboss.tools.modeshape.jcr.doc.user;singleton:
+ =true
+Archiver-Version: Plexus Archiver
+Built-By: hudson
+Require-Bundle: org.eclipse.help,org.eclipse.ui.intro
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Eclipse-SourceReferences: scm:git:https://github.com/jbosstools/jbosst
+ ools-central.git;path="plugins/org.jboss.tools.modeshape.jcr.doc.user
+ ";commitId=3ccdf788be5323a3669eb9d237364766e18c328e
+Bundle-Vendor: %bundleVendor
+Bundle-Name: %bundleName
+Bundle-Version: 3.8.0.Final-v20160621-1928-B214
+Created-By: Apache Maven 3.2.5
+Build-Jdk: 1.8.0_91
+Eclipse-BundleShape: dir
+

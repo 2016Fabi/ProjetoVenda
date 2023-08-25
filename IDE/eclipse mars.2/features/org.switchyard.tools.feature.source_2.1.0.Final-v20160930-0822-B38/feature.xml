@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.switchyard.tools.feature.source" version="2.1.0.Final-v20160930-0822-B38" plugin="org.switchyard.tools" label="%featureName" provider-name="%featureProvider">
+  <includes id="org.switchyard.tools.feature" version="2.1.0.Final-v20160930-0822-B38"/>
+  <description url="http://www.jboss.org/switchyard">
+      %description
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.switchyard.tools.xsd.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.m2e.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.ui.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.core.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.models.sca.core.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.models.sca.sca1_1.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.models.switchyard1_0.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.cxf.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.models.sca.core.edit.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.models.sca.sca1_1.edit.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.ui.editor.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.switchyard.tools.ui.debug.source" version="2.1.0.Final-v20160930-0822-B38" download-size="0" install-size="0" unpack="false"/>
+</feature>

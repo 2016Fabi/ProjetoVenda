@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+  
+     <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            name="%aspectj"
+            id="org.eclipse.ajdt.aspectjCheatSheetCategory"/>
+      <cheatsheet
+            category="org.eclipse.ajdt.aspectjCheatSheetCategory"
+            contentFile="cheatsheets/HelloWorld.xml"
+            name="%ajHelloWorldCheatsheet"
+            id="org.eclipse.ajdt.helloworld"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.configExtension">
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="intro/eclipse/ajdtOverviewExtensionContent.xml"/>
+
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="intro/eclipse/ajdtTutorialsExtensionContent.xml"/>  
+      
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="intro/eclipse/ajdtSamplesExtensionContent.xml"/>
+            
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="intro/rad/radAjdtWebExtensionContent.xml"/>
+
+      <!--
+          For old STS
+      -->
+      <configExtension
+            configId="com.springsource.sts.ide.ui.intro.config"
+            content="intro/eclipse/ajdtOverviewExtensionContent.xml"/>
+
+      <configExtension
+            configId="com.springsource.sts.ide.ui.intro.config"
+            content="intro/eclipse/ajdtTutorialsExtensionContent.xml"/>  
+      
+      <configExtension
+            configId="com.springsource.sts.ide.ui.intro.config"
+            content="intro/eclipse/ajdtSamplesExtensionContent.xml"/>
+            
+      <configExtension
+            configId="com.springsource.sts.ide.ui.intro.config"
+            content="intro/rad/radAjdtWebExtensionContent.xml"/>
+
+	  <!--
+	      For IBM Rational tooling.
+	  --> 
+      <configExtension
+            configId="com.ibm.rational.welcome.core.introConfig"
+            content="intro/rad/radAjdtOverviewExtensionContent.xml"/>
+
+      <configExtension
+            configId="com.ibm.rational.welcome.core.introConfig"
+            content="intro/rad/radAjdtTutorialsExtensionContent.xml"/>  
+      
+      <configExtension
+            configId="com.ibm.rational.welcome.core.introConfig"
+            content="intro/rad/radAjdtSamplesExtensionContent.xml"/>
+            
+      <configExtension
+            configId="com.ibm.rational.welcome.core.introConfig"
+            content="intro/rad/radAjdtWebExtensionContent.xml"/>
+   </extension>
+</plugin>
